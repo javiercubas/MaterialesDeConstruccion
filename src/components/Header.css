@@ -16,6 +16,10 @@
     background-position: center;
 }
 
+titulo-header{
+    width: 80%;
+}
+
 @media screen and (max-width: 768px) {
     .header{
         height: 25vh;
