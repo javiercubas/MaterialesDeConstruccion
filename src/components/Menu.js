@@ -11,8 +11,8 @@ const Menu = () => {
                 <a href='https://www.google.es/maps/dir//MATCENTER+EUROPE+S.L.U.,+Cam.+de+Humanes+a+Torrej%C3%B3n+de+Velasco,+6,+28991+Torrej%C3%B3n+de+la+Calzada,+Madrid/@40.2079961,-3.8642629,12z/data=!4m9!4m8!1m0!1m5!1m1!1s0xd4190485fc6e097:0x95dd97c3121f41f9!2m2!1d-3.7939569!2d40.2080505!3e0?hl=es'><h4 className="content-menu">CALLE REAL 1-B <br></br> TORREJÓN DE LA CALZADA <br></br> (29991) MADRID <br></br> (junto a los desguaces) <br></br> Entrada por Centro Logístico MATCENTER</h4></a>
             </div>
             <a href='https://www.google.es/maps/dir//MATCENTER+EUROPE+S.L.U.,+Cam.+de+Humanes+a+Torrej%C3%B3n+de+Velasco,+6,+28991+Torrej%C3%B3n+de+la+Calzada,+Madrid/@40.2079961,-3.8642629,12z/data=!4m9!4m8!1m0!1m5!1m1!1s0xd4190485fc6e097:0x95dd97c3121f41f9!2m2!1d-3.7939569!2d40.2080505!3e0?hl=es'><div className="mapa"></div></a>
-            {/* <div className='familias'>
-                <img src='./assets/Pantalla almacén_page-0001.jpg' alt='familia' className='familia' />
+            <div className='familias'>
+                <img src='./assets/cemento.jpg' alt='cemento' className='familia' />
                 <img src='./assets/Pantalla almacén_page-0002.jpg' alt='familia' className='familia' />
                 <img src='./assets/Pantalla almacén_page-0003.jpg' alt='familia' className='familia' />
                 <img src='./assets/Pantalla almacén_page-0004.jpg' alt='familia' className='familia' />
@@ -34,7 +34,7 @@ const Menu = () => {
                 <img src='./assets/Pantalla almacén_page-0020.jpg' alt='familia' className='familia' />
                 <img src='./assets/Pantalla almacén_page-0021.jpg' alt='familia' className='familia' />
                 <img src='./assets/Pantalla almacén_page-0022.jpg' alt='familia' className='familia' />
-            </div> */}
+            </div>
         </>
     )
 }
