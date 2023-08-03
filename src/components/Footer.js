@@ -22,7 +22,7 @@ const Footer = () => {
             </div>
 
             <div className="footer-bottom">
-                <p className="footer-bottom-text">© 2023 Materiales de Construcción. Todos los derechos reservados.</p>
+                <p className="footer-bottom-text">© 2023 materialesdeconstrucción.com. Todos los derechos reservados.</p>
                 <a href="" className="footer-button">Politica de Privacidad</a>
             </div>
         </div>
