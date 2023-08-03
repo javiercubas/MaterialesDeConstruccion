@@ -1,0 +1,139 @@
+.box-buscador {
+    height: 88vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-top: 12vh;
+}
+
+.imagen-buscador {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url(https://carbonverde.es/wp-content/uploads/2020/11/que-es-el-pellet.jpg);
+    background-size: cover;
+    background-position: center;
+    filter: blur(5px) brightness(0.8);
+    z-index: -1;
+}
+
+.titulo-buscador {
+    color: white;
+    text-transform: uppercase;
+    font-style: italic;
+    width: 40%;
+    font-size: 38px;
+    text-align: center;
+}
+
+.titulo-buscador span {
+    color: purple;
+}
+
+.input-buscador {
+    border-radius: 15px;
+    padding: 20px 40px 20px 20px;
+    /* Se agregó un espacio adicional a la derecha para el ícono */
+    width: 30%;
+    position: relative;
+    outline: 2px solid purple;
+    border: 0;
+    color: purple;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.search-results {
+    background-color: white;
+    width: 30%;
+    padding: 0 30px;
+    max-height: 40vh;
+    overflow-y: auto;
+    border-radius: 10px;
+    border: 2px solid purple;
+    display: none;
+}
+
+.search-results.show-results {
+    display: block;
+}
+
+
+/* Estilo del scrollbar */
+.search-results::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Estilo del thumb del scrollbar */
+.search-results::-webkit-scrollbar-thumb {
+    background-color: purple;
+    border-radius: 4px;
+}
+
+/* Estilo del track del scrollbar */
+.search-results::-webkit-scrollbar-track {
+    background-color: #f0f0f0;
+}
+
+/* Agregar estos estilos para el search-results cuando haya resultados */
+.search-results.show-results {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+/* Agregar estos estilos para el input-buscador cuando haya resultados */
+.input-buscador.show-results {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.search-result-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 5px 0;
+    border-bottom: 2px solid purple;
+    /* Ajusta el espaciado vertical entre cada elemento de sugerencia */
+}
+
+.search-result-item img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.search-type {
+    text-transform: uppercase;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    color: black !important;
+    font-style: italic !important;
+}
+
+.search-result-item p {
+    font-size: 18px;
+    font-weight: 700;
+    color: purple;
+    margin: 0;
+    padding: 0 10px;
+    cursor: pointer;
+    position: relative;
+}
+
+@media screen and (max-width: 768px) {
+    .titulo-buscador {
+        width: 90%;
+    }
+
+    .input-buscador {
+        width: 65%;
+    }
+
+    .search-results {
+        width: 65%;
+    }
+}

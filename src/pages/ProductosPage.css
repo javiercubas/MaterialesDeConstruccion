@@ -1,0 +1,108 @@
+.productos-page{
+    margin: 10vh 0;
+    margin-right: 1vw;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 3vw;
+}
+
+/* Agrega el botón de apertura del Sidebar */
+.sidebar-button {
+    display: none;
+    background-color: #800080;
+    color: white;
+    font-weight: 700;
+    width: 90%;
+    border: none;
+    padding: 15px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    margin: 5vh 0;
+}
+
+/* Estilos para el componente Sidebar */
+.sidebar {
+    flex: 0 0 250px;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-bottom-right-radius: 15px;
+    width: 12vw;
+}
+
+.sidebar h4 {
+    display: flex;
+    align-items: center; /* Centra verticalmente los elementos */
+    font-size: 18px;
+    margin-bottom: 10px;
+    gap: 5px;
+}
+
+/* Estilos para los íconos */
+.sidebar h4 svg {
+    margin-right: 8px; /* Separación horizontal entre el ícono y el texto */
+    width: 20px; /* Tamaño del ícono */
+    height: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    cursor: pointer;
+    margin-bottom: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    transition: box-shadow 0.3s ease; /* Transición para el efecto de elevación */
+}
+
+.sidebar li:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Efecto de elevación en el hover */
+}
+
+/* Estilos para la versión móvil */
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        padding: 0;
+    }
+
+    .sidebar h4{
+        justify-content: center;
+    }
+
+    .sidebar li{
+        text-align: center;
+    }
+
+    .sidebar-button {
+        display: block; /* Muestra el botón de apertura en la versión móvil */
+    }
+
+    /* Muestra u oculta el Sidebar según el estado */
+    .sidebar-container.open {
+        display: flex;
+        width: 90%;
+        flex-direction: column;
+        margin-bottom: 5vh;
+        margin-top: -5vh;
+    }
+
+    .sidebar-container.closed {
+        display: none;
+    }
+
+    .productos-page{
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+    }
+
+    .title-productos{
+        display: none;
+    }
+}
