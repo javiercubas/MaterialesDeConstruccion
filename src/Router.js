@@ -56,7 +56,7 @@ const Router = () => {
                     path={`/marca/${marca.nombre.toLowerCase().trim().replaceAll(' ', '-')}`} // Cambiar la ruta como desees
                     element={<CategoriaPage key={marca.uid}
                         titulo={marca.nombre}
-                        uid={marca.id}
+                        id={marca.id}
                         descripcion={marca.descripcion} />}
                 />
             ))}
@@ -66,7 +66,7 @@ const Router = () => {
                     path={`/productor/${productor.nombre.toLowerCase().trim().replaceAll(' ', '-')}`} // Cambiar la ruta como desees
                     element={<CategoriaPage key={productor.uid}
                         titulo={productor.nombre}
-                        uid={productor.id}
+                        id={productor.id}
                         descripcion={productor.descripcion} />}
                 />
             ))}
