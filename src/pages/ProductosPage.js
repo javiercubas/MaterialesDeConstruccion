@@ -1,7 +1,7 @@
 import React from 'react'
 import Productos from '../components/Productos';
 import { useState, useEffect } from 'react';
-import { getProductos } from '../modelos/ProductoModel';
+import { getCategoriasProducto, getProductos } from '../modelos/ProductoModel';
 import { getMarcas } from '../modelos/MarcaModel';
 import { getProductores } from '../modelos/ProductorModel';
 import { getCategorias } from '../modelos/CategoriaModel';
@@ -27,9 +27,22 @@ const ProductosPage = () => {
     };
 
     useEffect(() => {
-        getProductos().then((productos) => {
-            setProductos(productos);
-        });
+        // Función auxiliar para obtener las categorías de cada producto
+    const obtenerCategoriasProductos = async (productos) => {
+        const productosConCategorias = await Promise.all(
+            productos.map(async (producto) => {
+                const categorias = await getCategoriasProducto(producto.id);
+                producto.categorias = categorias.map((categoria) => categoria.nombre);
+                return producto;
+            })
+        );
+        setProductos(productosConCategorias);
+    };
+
+    // Obtener los productos y sus categorías
+    getProductos().then((productos) => {
+        obtenerCategoriasProductos(productos);
+    });
 
         getMarcas().then((marcas) => {
             setMarcas(marcas);
@@ -43,10 +56,11 @@ const ProductosPage = () => {
             setCategorias(categorias);
         });
 
+
         // Apply filters
         let filtered = productos;
         if (filters.categoria) {
-            filtered = filtered.filter((producto) => producto.categoria === filters.categoria);
+            filtered = filtered.filter((producto) => producto.categorias.includes(filters.categoria));
         }
         if (filters.marca) {
             filtered = filtered.filter((producto) => producto.marca === filters.marca);
@@ -55,7 +69,8 @@ const ProductosPage = () => {
             filtered = filtered.filter((producto) => producto.productor === filters.productor);
         }
         setFilteredProductos(filtered);
-    }, [filters, productos]);
+
+    }, [productos, filters]);
 
     return (
         <div className="productos-page">
@@ -72,9 +87,11 @@ const ProductosPage = () => {
                     onFilterChange={handleFilterChange}
                 />
             </div>
+            <div style={{ width: '77vw' }}>
             <Productos titulo="Productos" productos={filteredProductos} grid="repeat(3, 1fr)" />
+            </div>
         </div>
     )
 }
 
-export default ProductosPage
+export default ProductosPage;

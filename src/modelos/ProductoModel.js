@@ -13,6 +13,7 @@ class ProductoModel {
         marca,
         productor,
         oferta,
+        categorias
     }) {
         this.id = id;
         this.nombre = nombre;
@@ -24,6 +25,7 @@ class ProductoModel {
         this.marca = marca;
         this.productor = productor;
         this.oferta = oferta;
+        this.categorias = categorias;
     }
 }
 
@@ -100,6 +102,23 @@ export const buscar = async (searchValue) => {
     } catch (error) {
         console.error(error);
         throw new Error('Error al buscar los productos, marcas y productores');
+    }
+};
+
+// Funcion para obtener categorias relacionadas con un producto
+export const getCategoriasProducto = async (idProducto) => {
+    try {
+        const response = await fetch('https://api.primepellet.es/productos/' + idProducto + '/categorias?bbdd=2');
+
+        if (!response.ok) {
+            throw new Error('Error al obtener las categorias');
+        }
+
+        const categorias = await response.json();
+        return categorias;
+    } catch (error) {
+        console.error(error);
+        throw new Error('Error al obtener las categorias');
     }
 };
 
