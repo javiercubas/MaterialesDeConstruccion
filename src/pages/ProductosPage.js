@@ -72,7 +72,7 @@ const ProductosPage = () => {
                     onFilterChange={handleFilterChange}
                 />
             </div>
-            <Productos titulo="Productos" productos={filteredProductos} />
+            <Productos titulo="Productos" productos={filteredProductos} grid="repeat(3, 1fr)" />
         </div>
     )
 }
