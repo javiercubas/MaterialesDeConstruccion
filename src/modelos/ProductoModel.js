@@ -13,7 +13,8 @@ class ProductoModel {
         marca,
         productor,
         oferta,
-        categorias
+        categorias,
+        url
     }) {
         this.id = id;
         this.nombre = nombre;
@@ -26,6 +27,7 @@ class ProductoModel {
         this.productor = productor;
         this.oferta = oferta;
         this.categorias = categorias;
+        this.url = url;
     }
 }
 

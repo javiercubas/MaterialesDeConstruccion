@@ -13,6 +13,7 @@ const Productos = (props) => {
                         name={producto.nombre}
                         image={producto.imagen}
                         price={producto.precio}
+                        url={producto.url}
                     />
                 ))}
             </div>
