@@ -167,6 +167,15 @@
     margin-top: 0;
 }
 
+.cta-section-producto-page {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 5vh;
+}
+
 .cta-producto-page {
 
     padding: 15px 20px;
@@ -178,6 +187,11 @@
     font-weight: 700;
     margin-bottom: 5vh;
     cursor: pointer;
+    width: 49%;
+}
+
+.cta-carrito {
+    background-color: #ee1f26;
 }
 
 .productos-relacionados-container {

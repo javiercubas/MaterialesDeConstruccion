@@ -7,6 +7,7 @@ import { getMarcas } from "../modelos/MarcaModel";
 import { getPartners } from "../modelos/PartnerModel";
 import { getTiposProductos } from "../modelos/TipoProductoModel";
 import PromoPopUp from "./PromoPopUp";
+import Cookies from "universal-cookie";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -60,6 +61,20 @@ const Header = () => {
 
   const [showPopup, setShowPopup] = useState(false);
 
+  const [cart, setCart] = useState([]);
+  useEffect(() => {
+    try {
+      const cookies = new Cookies();
+      const carrito = cookies.get('carrito');
+
+      if (carrito) {
+        setCart(carrito);
+      }
+    } catch (error) {
+      console.error('Error al parsear el carrito desde cookies:', error);
+      // Manejar el error según sea necesario
+    }
+  }, []);
   return (
     <>
       <nav className={`nav ${isMenuOpen ? "menu-open" : ""}`}>
@@ -129,6 +144,11 @@ const Header = () => {
               <li><a href="/sobre-nosotros">SOBRE NOSOTROS</a></li>
             </ul>
           </div>
+          <div className="shopping-cart-container">
+            <img src="/assets/shopping-cart.png" alt="shopping-cart" className="shopping-cart" width={40}></img>
+            <div className="shopping-cart-counter">{cart.length}</div>
+          </div>
+
         </div>
 
         <div className="hamburger" onClick={handleMenuClick}>

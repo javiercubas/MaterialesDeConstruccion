@@ -931,6 +931,32 @@ const Producto = (props) => {
         document.body.style.overflow = 'hidden';
     };
 
+    const [mensaje, setMensaje] = useState('AÑADIR AL CARRITO');
+
+    const handleCarrito = () => {
+        const cookies = new Cookies();
+        const carrito = cookies.get('carrito');
+        const producto = {
+            nombre: nombre,
+            imagen: imagen,
+            precio: precioFinal,
+            envio: envio,
+            cantidad: 1
+        }
+        if (carrito) {
+            const newCarrito = carrito.concat(producto);
+            cookies.set('carrito', newCarrito, { path: '/' });
+        } else {
+            cookies.set('carrito', [producto], { path: '/' });
+        }
+        setMensaje('AÑADIDO AL CARRITO');
+
+        setTimeout(() => {
+            setMensaje('AÑADIR AL CARRITO');
+        }
+            , 2000);
+    }
+
     return (
         <>
             <div className="producto-page">
@@ -993,7 +1019,10 @@ const Producto = (props) => {
                     <div className="descripcion-producto-page">
                         <div dangerouslySetInnerHTML={{ __html: descripcion }} />
                     </div>
-                    <button className="cta-producto-page" onClick={handleShowPopup}>COMPRAR AHORA</button>
+                    <div className="cta-section-producto-page">
+                        <button className="cta-producto-page" onClick={handleShowPopup}>COMPRAR AHORA</button>
+                        <button className="cta-producto-page cta-carrito" onClick={handleCarrito}>{mensaje}</button>
+                    </div>
                     {showPopup && <FinalizaTuCompra nombre={nombre} imagen={imagen} precioPack={precioPack} envio={envio} precioFinal={precioFinal} onClose={() => {
                         setShowPopup(false);
                         document.body.style.overflow = 'unset';
