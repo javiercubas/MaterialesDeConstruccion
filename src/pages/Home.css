@@ -25,31 +25,31 @@
 
 .header-menu {
     font-size: 30px;
-    color: purple;
+    color: #666;
     font-weight: 1000;
 }
 
-.content-menu{
+.content-menu {
     width: 80%;
     text-align: left;
     font-weight: 500;
 }
 
-.left-content{
+.left-content {
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
 }
 
-.rigth-content{
+.rigth-content {
     width: 60%;
     height: 100%;
 }
 
 a {
     text-decoration: none;
-    color: #d88c00;
+    color: #ee1f26;
 }
 
 .mapa {
@@ -70,20 +70,20 @@ a {
     gap: 40px 0;
 }
 
-.productos{
+.productos {
     width: 90%;
     display: flex;
     flex-direction: column;
 }
 
-.title-productos{
+.title-productos {
     font-size: 36px;
     font-weight: 1000;
-    color: purple;
+    color: #666;
     text-transform: uppercase;
 }
 
-.grid-products{
+.grid-products {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -115,28 +115,28 @@ a {
         width: 90%;
     }
 
-    .contact{
+    .contact {
         flex-direction: column;
         align-items: center;
         width: 90%;
         gap: 15px;
     }
 
-    .left-content{
+    .left-content {
         align-items: center;
         gap: 10px;
     }
 
-    .content-menu{
+    .content-menu {
         text-align: center;
         width: 100%;
     }
 
-    .grid-products{
+    .grid-products {
         grid-template-columns: repeat(1, 1fr);
     }
 
-    .title-productos{
+    .title-productos {
         text-align: center;
     }
 }

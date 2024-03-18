@@ -17,7 +17,7 @@
     top: 20px;
     left: 20px;
     margin: 0;
-    color: purple;
+    color: #666;
     text-transform: uppercase;
     font-style: italic;
 }
@@ -70,7 +70,7 @@
 .finaliza-input {
     height: 40px;
     border-radius: 5px;
-    border: 3px solid purple;
+    border: 3px solid #666;
     padding: 5px;
     font-size: 12px;
     font-weight: 500;
@@ -82,10 +82,10 @@
 
 .finaliza-input:focus {
     outline: none;
-    border: 3px solid #d88c00;
+    border: 3px solid #ee1f26;
 }
 
-.finaliza-button{
+.finaliza-button {
     width: 100%;
     border-radius: 5px;
     border: none;
@@ -96,7 +96,7 @@
     text-align: center;
     text-transform: uppercase;
     margin-top: 0;
-    background-color: purple;
+    background-color: #666;
     color: white;
     cursor: pointer;
 }
@@ -107,20 +107,24 @@
         height: 100%;
         overflow-y: auto;
     }
+
     .finaliza-wrap {
         flex-direction: column;
         align-items: flex-start;
         justify-content: center;
     }
+
     .finaliza-form-content {
         width: 100%;
         flex-direction: column;
         align-items: flex-start;
         justify-content: center;
     }
+
     .finaliza-input {
         width: 100%;
     }
+
     .finaliza-button {
         width: 100%;
     }

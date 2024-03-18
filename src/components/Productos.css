@@ -1,0 +1,62 @@
+.descripcion-precios {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 4vh;
+}
+
+.price-productos {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.price-productos span {
+  font-size: 18px;
+  font-weight: 1000;
+  color: #ee1f26;
+}
+
+/* Estilos para la bola verde parpadeante */
+.blink-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: transparent;
+  transition: background-color 0.5s ease-in-out;
+}
+
+.info-adicional-producto-page {
+  width: 95%;
+  display: flex;
+  margin: 25px 0px;
+  flex-direction: row;
+  gap: 60px;
+}
+
+.info-adicional-producto-page img {
+  width: 20%;
+}
+
+.info-adicional-producto-page p {
+  color: #666;
+  font-size: 36px;
+  font-weight: 700;
+}
+
+@media screen and (max-width: 768px) {
+  .info-adicional-producto-page {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .info-adicional-producto-page img {
+    width: 50%;
+  }
+
+  .info-adicional-producto-page p {
+    font-size: 24px;
+  }
+}

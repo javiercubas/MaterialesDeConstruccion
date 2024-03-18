@@ -41,7 +41,7 @@
 }
 
 .popup-content h2 span {
-    color: purple;
+    color: #666;
     text-transform: uppercase;
     font-style: italic;
     font-size: 1000;
@@ -72,7 +72,7 @@
     font-size: 18px;
     font-weight: 1000;
     border-radius: 8px;
-    border: 3px solid purple;
+    border: 3px solid #666;
     outline: none;
 }
 
@@ -92,7 +92,7 @@
 }
 
 .popup-content form button {
-    background-color: purple;
+    background-color: #666;
     border: none;
     border-radius: 10px;
     color: white;

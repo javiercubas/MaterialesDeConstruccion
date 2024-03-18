@@ -1,3 +1,4 @@
+/* Estilos del menú principal */
 nav {
     height: 12vh;
     width: 100%;
@@ -5,7 +6,7 @@ nav {
     top: 0%;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #d88c00;
+    background-color: #ee1f26;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -86,6 +87,8 @@ nav.scrolled .navLinks ul li a {
 
 .navLinks ul li {
     list-style: none;
+    position: relative;
+    /* Añadimos posición relativa para alinear el submenú */
 }
 
 .navLinks ul li a {
@@ -97,9 +100,52 @@ nav.scrolled .navLinks ul li a {
 
 .navLinks ul li a:hover,
 ul li a:focus {
-    color: purple;
+    color: #666;
     outline: none;
 }
+
+/* Estilos para el submenú */
+.submenu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ee1f26;
+    display: none;
+    /* Por defecto, el submenú estará oculto */
+    border-radius: 5px;
+    padding: 10px 20px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+    flex-direction: column;
+}
+
+/* Mostramos el submenú cuando el desplegable está abierto */
+.menu-open .navLinks ul li:hover .submenu,
+.menu-open .navLinks ul li:focus .submenu {
+    display: flex;
+    /* Mostramos el submenú como una columna */
+}
+
+.submenu li {
+    margin: 5px 0;
+    text-align: center;
+}
+
+.submenu a,
+.submenu div {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1vw;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.submenu a:hover,
+.submenu div:hover {
+    color: #666;
+}
+
+/* Resto de estilos */
 
 .joinButton {
     display: flex;
@@ -199,8 +245,39 @@ ul li a:focus {
         color: var(--text);
     }
 
+    .navLinks ul li div {
+        color: var(--text);
+        font-weight: 600;
+        font-size: 18px;
+    }
+
     .menu-open .navLinks ul li {
         margin-bottom: 10px;
+    }
+
+    .submenu {
+        position: static;
+        /* Cambiamos la posición del submenú en móvil */
+        width: 100%;
+        display: none;
+        background-color: transparent;
+        box-shadow: none;
+        padding: 0;
+        margin: 0;
+        top: 0;
+        left: 0;
+        transform: none;
+        border-radius: 0;
+    }
+
+    .menu-open .submenu {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .submenu a {
+        font-size: 18px;
+        /* Tamaño de fuente para enlaces del submenú en móvil */
     }
 
     .joinButton a {

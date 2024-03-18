@@ -24,7 +24,7 @@ const Buscador = () => {
     <div className={`box-buscador${isDefaultSearch ? ' no-results' : ''}`}>
       <div className='imagen-buscador' />
       <h2 className='titulo-buscador'>
-        Encuentra <span>todo</span> tipo de materiales de construcción con un <span>click</span>
+        <span>Busca</span> cualquier producto con un <span>click</span>
       </h2>
       <input
         className={`input-buscador${showResults ? ' show-results' : ''}`}
@@ -51,7 +51,7 @@ const Buscador = () => {
                 <p className='search-type'>{result.type}</p>
               </div>
             </a>
-          ))          
+          ))
         )}
       </div>
     </div>

@@ -5,6 +5,8 @@ import Popup from './components/Popup';
 import Cookies from 'universal-cookie';
 import Footer from './components/Footer';
 import Router from './Router';
+import ReactGA from 'react-ga';
+import { useEffect } from 'react';
 
 function App() {
 
@@ -15,6 +17,22 @@ function App() {
 
   // Verifica si el popup debe mostrarse)
   const mostrarPopup = !tieneCodigoPostal
+
+  // Configurar seguimiento de eventos personalizados si es necesario
+  const trackEvent = (category, action, label, value) => {
+    ReactGA.event({
+      category: category,
+      action: action,
+      label: label,
+      value: value,
+    });
+  };
+
+  // Enviar la página actual a Google Analytics cada vez que cambia la ubicación
+  useEffect(() => {
+    ReactGA.set({ page: location.pathname });
+    ReactGA.pageview(location.pathname);
+  }, [location]);
 
   return (
     <>

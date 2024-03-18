@@ -4,12 +4,13 @@ import { FaPencilAlt, FaPlus } from 'react-icons/fa';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import Cookies from 'universal-cookie';
-import axios from 'axios';
 import FinalizaTuCompra from '../components/FinalizaTuCompra';
+import Productos from '../components/Productos';
+import axios from 'axios';
 
 const Producto = (props) => {
 
-    const { nombre, imagen, precio, descripcion, pack, estrellas } = props;
+    const { nombre, imagen, precio, descripcion, pack, peso, estrellas, seEnvia, tipo } = props;
 
     const precioPack = precio * pack;
 
@@ -24,8 +25,269 @@ const Producto = (props) => {
         }
     }, []);
 
+    function calcularPrecioFinalEnvio(totalPeso, zona) {
+        let precioPallet = 0;
 
-    function calcularPrecios(precio, cp, tipoPallet) {
+        // Zona 1
+        switch (zona) {
+            case "zona1":
+                if (totalPeso <= 150) {
+                    precioPallet = 54.32
+                }
+                else if (totalPeso > 150 && totalPeso <= 300) {
+                    precioPallet = 61.88;
+                }
+                else if (totalPeso > 300 && totalPeso <= 450) {
+                    precioPallet = 81.62;
+                }
+                else if (totalPeso > 450 && totalPeso <= 600) {
+                    precioPallet = 80.78
+                }
+                else if (totalPeso > 600 && totalPeso <= 750) {
+                    precioPallet = 87.64;
+                }
+                else if (totalPeso > 750 && totalPeso <= 1200) {
+                    precioPallet = 90.72;
+                }
+                break;
+            case "zona2":
+                // Zona 2
+                if (totalPeso <= 150) {
+                    precioPallet = 55.86;
+                }
+                else if (totalPeso > 150 && totalPeso <= 300) {
+                    precioPallet = 63.42;
+                }
+                else if (totalPeso > 300 && totalPeso <= 450) {
+                    precioPallet = 83.16;
+                }
+                else if (totalPeso > 450 && totalPeso <= 600) {
+                    precioPallet = 82.32;
+                }
+                else if (totalPeso > 600 && totalPeso <= 750) {
+                    precioPallet = 92.12;
+                }
+                else if (totalPeso > 750 && totalPeso <= 1200) {
+                    precioPallet = 95.20;
+                }
+                break;
+            case "zona3":
+                // Zona 3
+                if (totalPeso <= 150) {
+                    precioPallet = 60.48;
+                }
+                else if (totalPeso > 150 && totalPeso <= 300) {
+                    precioPallet = 68.04;
+                }
+                else if (totalPeso > 300 && totalPeso <= 450) {
+                    precioPallet = 86.94;
+                }
+                else if (totalPeso > 450 && totalPeso <= 600) {
+                    precioPallet = 85.40;
+                }
+                else if (totalPeso > 600 && totalPeso <= 750) {
+                    precioPallet = 96.74;
+                }
+                else if (totalPeso > 750 && totalPeso <= 1200) {
+                    precioPallet = 99.68;
+                }
+                break;
+            case "zona4":
+                // Zona 4
+                if (totalPeso <= 150) {
+                    precioPallet = 64.96;
+                }
+                else if (totalPeso > 150 && totalPeso <= 300) {
+                    precioPallet = 72.52;
+                }
+                else if (totalPeso > 300 && totalPeso <= 450) {
+                    precioPallet = 95.20;
+                }
+                else if (totalPeso > 450 && totalPeso <= 600) {
+                    precioPallet = 88.34;
+                }
+                else if (totalPeso > 600 && totalPeso <= 750) {
+                    precioPallet = 105.84;
+                }
+                else if (totalPeso > 750 && totalPeso <= 1200) {
+                    precioPallet = 108.78;
+                }
+                break;
+            case "zona5":
+                // Zona 5
+                if (totalPeso <= 150) {
+                    precioPallet = 65.66;
+                }
+                else if (totalPeso > 150 && totalPeso <= 300) {
+                    precioPallet = 73.22;
+                }
+                else if (totalPeso > 300 && totalPeso <= 450) {
+                    precioPallet = 97.44;
+                }
+                else if (totalPeso > 450 && totalPeso <= 600) {
+                    precioPallet = 91.42;
+                }
+                else if (totalPeso > 600 && totalPeso <= 750) {
+                    precioPallet = 111.02;
+                }
+                else if (totalPeso > 750 && totalPeso <= 1200) {
+                    precioPallet = 114.80;
+                }
+                break;
+            case "zona6":
+                // Zona 6
+                if (totalPeso <= 150) {
+                    precioPallet = 67.20;
+                }
+                else if (totalPeso > 150 && totalPeso <= 300) {
+                    precioPallet = 77.0;
+                }
+                else if (totalPeso > 300 && totalPeso <= 450) {
+                    precioPallet = 105.0;
+                }
+                else if (totalPeso > 450 && totalPeso <= 600) {
+                    precioPallet = 98.98;
+                }
+                else if (totalPeso > 600 && totalPeso <= 750) {
+                    precioPallet = 122.36;
+                }
+                else if (totalPeso > 750 && totalPeso <= 1200) {
+                    precioPallet = 129.92;
+                }
+                break;
+            case "zona7":
+                // Zona 7
+                if (totalPeso <= 150) {
+                    precioPallet = 73.22;
+                }
+                else if (totalPeso > 150 && totalPeso <= 300) {
+                    precioPallet = 83.16;
+                }
+                else if (totalPeso > 300 && totalPeso <= 450) {
+                    precioPallet = 119.42;
+                }
+                else if (totalPeso > 450 && totalPeso <= 600) {
+                    precioPallet = 111.02;
+                }
+                else if (totalPeso > 600 && totalPeso <= 750) {
+                    precioPallet = 139.02;
+                }
+                else if (totalPeso > 750 && totalPeso <= 1200) {
+                    precioPallet = 146.58;
+                }
+                break;
+            case "zona8":
+                // Zona 8
+                if (totalPeso <= 150) {
+                    precioPallet = 74.76;
+                }
+                else if (totalPeso > 150 && totalPeso <= 300) {
+                    precioPallet = 87.64;
+                }
+                else if (totalPeso > 300 && totalPeso <= 450) {
+                    precioPallet = 143.64;
+                }
+                else if (totalPeso > 450 && totalPeso <= 600) {
+                    precioPallet = 126.14;
+                }
+                else if (totalPeso > 600 && totalPeso <= 750) {
+                    precioPallet = 169.26;
+                }
+                else if (totalPeso > 750 && totalPeso <= 1200) {
+                    precioPallet = 173.88;
+                }
+                break;
+            case "zona9":
+                // Zona 9
+                if (totalPeso <= 150) {
+                    precioPallet = 105.84;
+                }
+                else if (totalPeso > 150 && totalPeso <= 300) {
+                    precioPallet = 129.92;
+                }
+                else if (totalPeso > 300 && totalPeso <= 450) {
+                    precioPallet = 204.82;
+                }
+                else if (totalPeso > 450 && totalPeso <= 600) {
+                    precioPallet = 185.92;
+                }
+                else if (totalPeso > 600 && totalPeso <= 750) {
+                    precioPallet = 235.06;
+                }
+                else if (totalPeso > 750 && totalPeso <= 1200) {
+                    precioPallet = 277.34;
+                }
+                break;
+            case "zona10":
+                // Zona 10
+                if (totalPeso <= 150) {
+                    precioPallet = 108.78;
+                }
+                else if (totalPeso > 150 && totalPeso <= 300) {
+                    precioPallet = 133.70;
+                }
+                else if (totalPeso > 300 && totalPeso <= 450) {
+                    precioPallet = 213.08;
+                }
+                else if (totalPeso > 450 && totalPeso <= 600) {
+                    precioPallet = 189.70;
+                }
+                else if (totalPeso > 600 && totalPeso <= 750) {
+                    precioPallet = 250.88;
+                }
+                else if (totalPeso > 750 && totalPeso <= 1200) {
+                    precioPallet = 292.46;
+                }
+                break;
+            case "zona11":
+                // Zona 11
+                if (totalPeso <= 150) {
+                    precioPallet = 106.54;
+                }
+                else if (totalPeso > 150 && totalPeso <= 300) {
+                    precioPallet = 131.46;
+                }
+                else if (totalPeso > 300 && totalPeso <= 450) {
+                    precioPallet = 275.10;
+                }
+                else if (totalPeso > 450 && totalPeso <= 600) {
+                    precioPallet = 187.46;
+                }
+                else if (totalPeso > 600 && totalPeso <= 750) {
+                    precioPallet = 262.22;
+                }
+                else if (totalPeso > 750 && totalPeso <= 1200) {
+                    precioPallet = 302.40;
+                }
+                break;
+            case "zona12":
+                // Zona 12
+                if (totalPeso <= 150) {
+                    precioPallet = 156.38
+                }
+                else if (totalPeso > 150 && totalPeso <= 300) {
+                    precioPallet = 191.94
+                }
+                else if (totalPeso > 300 && totalPeso <= 450) {
+                    precioPallet = 253.96
+                }
+                else if (totalPeso > 450 && totalPeso <= 600) {
+                    precioPallet = 250.88;
+                }
+                else if (totalPeso > 600 && totalPeso <= 750) {
+                    precioPallet = 331.80;
+                }
+                else if (totalPeso > 750 && totalPeso <= 1200) {
+                    precioPallet = 371.84;
+                }
+                break;
+        }
+
+        return precioPallet;
+    }
+
+
+    function calcularPrecios(precio, cp, tipoPallet, peso) {
 
         // Use optional chaining to access toString method safely
         const codigoPostalStr = cp?.toString();
@@ -543,151 +805,7 @@ const Producto = (props) => {
                 ],
             }
 
-            const tiposZona = {
-                zona1: {
-                    10: 38.8,
-                    20: 44.2,
-                    30: 58.3,
-                    40: 57.7,
-                    50: 62.6,
-                    60: 64.8,
-                    70: 64.8,
-                    72: 64.8,
-                    80: 64.8,
-                },
-
-                zona2: {
-                    10: 39.9,
-                    20: 45.3,
-                    30: 59.4,
-                    40: 58.8,
-                    50: 65.8,
-                    60: 68.0,
-                    70: 68.0,
-                    72: 68.0,
-                    80: 68.0,
-                },
-
-                zona3: {
-                    10: 43.2,
-                    20: 48.6,
-                    30: 62.1,
-                    40: 61.0,
-                    50: 69.1,
-                    60: 71.2,
-                    70: 71.2,
-                    72: 71.2,
-                    80: 71.2,
-                },
-
-                zona4: {
-                    10: 46.4,
-                    20: 51.8,
-                    30: 68.0,
-                    40: 63.1,
-                    50: 75.6,
-                    60: 77.7,
-                    70: 77.7,
-                    72: 77.7,
-                    80: 77.7,
-                },
-
-                zona5: {
-                    10: 46.9,
-                    20: 52.3,
-                    30: 69.6,
-                    40: 65.3,
-                    50: 79.3,
-                    60: 82.0,
-                    70: 82.0,
-                    72: 82.0,
-                    80: 82.0,
-                },
-
-                zona6: {
-                    10: 48.0,
-                    20: 55.0,
-                    30: 75.0,
-                    40: 70.7,
-                    50: 87.4,
-                    60: 92.8,
-                    70: 92.8,
-                    72: 92.8,
-                    80: 92.8,
-                },
-
-                zona7: {
-                    10: 52.3,
-                    20: 59.4,
-                    30: 85.0,
-                    40: 79.3,
-                    50: 99.3,
-                    60: 104.7,
-                    70: 104.7,
-                    72: 104.7,
-                    80: 104.7,
-                },
-
-                zona8: {
-                    10: 53.4,
-                    20: 62.6,
-                    30: 102.6,
-                    40: 90.0,
-                    50: 120.9,
-                    60: 124.2,
-                    70: 124.2,
-                    72: 124.2,
-                    80: 124.2,
-                },
-
-                zona9: {
-                    10: 75.6,
-                    20: 92.8,
-                    30: 146.3,
-                    40: 132.8,
-                    50: 167.9,
-                    60: 198.1,
-                    70: 198.1,
-                    72: 198.1,
-                    80: 198.1,
-                },
-
-                zona10: {
-                    10: 77.7,
-                    20: 95.5,
-                    30: 152.2,
-                    40: 135.5,
-                    50: 172.2,
-                    60: 208.9,
-                    70: 208.9,
-                    72: 208.9,
-                    80: 208.9,
-                },
-
-                zona11: {
-                    10: 76.1,
-                    20: 93.9,
-                    30: 196.5,
-                    40: 133.9,
-                    50: 187.3,
-                    60: 216.0,
-                    70: 216.0,
-                    72: 216.0,
-                    80: 216.0,
-                },
-
-                zona12: {
-                    10: 111.7,
-                    20: 137.1,
-                    30: 181.4,
-                    40: 179.2,
-                    50: 237.0,
-                    60: 265.6,
-                    70: 265.6,
-                    72: 265.6,
-                    80: 265.6,
-                }
-            }
+            const totalPeso = peso * tipoPallet; // Peso total del envío
 
             let estaDentro = false;
             let zona = "";
@@ -702,7 +820,7 @@ const Producto = (props) => {
                 if (codigosPostalesZona.includes(cp)) {
                     estaDentro = true;
                     zona = key;
-                    tipo = tiposZona[zona][tipoPallet];
+                    tipo = calcularPrecioFinalEnvio(totalPeso, zona);
                 }
                 i++;
             }
@@ -720,7 +838,7 @@ const Producto = (props) => {
                         if (codigosPostalesZona[k].startsWith(dosPrimerosDigitosCP)) {
                             estaDentro = true;
                             zona = key;
-                            tipo = tiposZona[zona][tipoPallet];
+                            tipo = calcularPrecioFinalEnvio(totalPeso, zona);
                         }
                         k++;
                     }
@@ -729,7 +847,7 @@ const Producto = (props) => {
             }
 
             if (estaDentro) {
-                tipo = tipo * 1.21;
+                // tipo = tipo * 1.21; // Añadir IVA
                 const precioFinal = (precio + tipo).toFixed(2);
                 console.log(`El precio final para el código postal ${cp} y tipo de pallet ${tipoPallet} es: ${precioFinal}`);
                 return precioFinal;
@@ -741,7 +859,7 @@ const Producto = (props) => {
     }
 
     const [envio, setEnvio] = useState(false); // Estado para manejar el tipo de envío
-    const precioFinal = calcularPrecios(precioPack, codigoPostal, pack);
+    const precioFinal = calcularPrecios(precioPack, codigoPostal, pack, peso);
 
 
     const [isEditing, setIsEditing] = useState(false); // Estado para controlar la edición del código postal
@@ -814,67 +932,79 @@ const Producto = (props) => {
     };
 
     return (
-        <div className="producto-page">
-            <div className="multimedia-producto-page">
-                <img src={imagen} alt={nombre} className="img-producto-page" />
-                <h3 className="title-section-producto">Valoraciones</h3>
-                <p className="descripcion-valoraciones">
-                    Los productos son evaluados por expertos en la materia, quienes han otorgado una valoración de {valoracion} sobre 5 estrellas. La valoración se basa en criterios como la calidad del producto, la sostenibilidad, la eficiencia energética y la satisfacción del cliente. Puedes confiar en que nuestras valoraciones reflejan la excelencia de nuestros productos.
-                </p>
-                <div className="estrellas">{generarEstrellas()}</div>
-            </div>
-            <div className="info-producto-page">
-                <h1 className="title-producto-page">{nombre}</h1>
-                <div className="shipping-container">
-                    <button onClick={() => setEnvio(false)} className={!envio ? 'shipping-title active' : 'shipping-title'}>Recogida en tienda</button>
-                    <button onClick={() => setEnvio(true)} className={envio ? 'shipping-title active' : 'shipping-title'}>Envío a domicilio</button>
+        <>
+            <div className="producto-page">
+                <div className="multimedia-producto-page">
+                    <img src={imagen} alt={nombre} className="img-producto-page" />
+                    <h3 className="title-section-producto">Valoraciones</h3>
+                    <p className="descripcion-valoraciones">
+                        Los productos son evaluados por expertos en la materia, quienes han otorgado una valoración de {valoracion} sobre 5 estrellas. La valoración se basa en criterios como la calidad del producto, la sostenibilidad, la eficiencia energética y la satisfacción del cliente. Puedes confiar en que nuestras valoraciones reflejan la excelencia de nuestros productos.
+                    </p>
+                    <div className="estrellas">{generarEstrellas()}</div>
                 </div>
-                {!envio ? (
-                    <></>
-                ) : (
-                    <div className="cp-container">
-                        {isEditing ? (
-                            <div className="editar-cp">
-                                <input
-                                    type="text"
-                                    className="cp-input"
-                                    defaultValue={codigoPostal}
-                                    onBlur={(e) => handleGuardarCodigoPostal(e.target.value)}
-                                    onKeyPress={handleKeyPress}
-                                />
-                                <button className="cp-button" onClick={() => handleGuardarCodigoPostal(codigoPostal)}>Actualizar</button>
-                            </div>
-                        ) : codigoPostal == undefined ? (
-                            <p className="cp-envio" onClick={() => setIsEditing(true)} style={{ cursor: 'pointer' }}>
-                                Añadir un código postal para calcular el precio <FaPlus size={15} color="#d88c00" />
-                            </p>
-                        )
-                            :
-                            (
-                                <p className="cp-envio" onClick={() => setIsEditing(true)}>
-                                    Código postal: <span>{codigoPostal}</span> <FaPencilAlt size={15} style={{ cursor: 'pointer' }} color="#d88c00" />
-                                </p>
-                            )}
-                        {showAlert && (
-                            <p className="alert-text">El código postal debe ser un número de 5 dígitos entre 01000 y 50999.</p>
-                        )}
+                <div className="info-producto-page">
+                    <h1 className="title-producto-page">{nombre}</h1>
+                    <div className="shipping-container">
+                        <button onClick={() => setEnvio(false)} className={!envio ? 'shipping-title active' : 'shipping-title'}>Recogida gratis</button>
+                        {
+                            seEnvia ? (
+                                <button onClick={() => setEnvio(true)} className={envio ? 'shipping-title active' : 'shipping-title'}>Envío a domicilio</button>
+                            ) : (
+                                <></>
+                            )
+                        }
                     </div>
-                )}
-                {!envio ? (
-                    <div className="precio-producto-page">{precioPack.toFixed(2)} € <span>(IVA INCLUIDO)</span></div>
-                ) : (
-                    <div className="precio-producto-page">{precioFinal} € <span>(IVA INCLUIDO)</span></div>
-                )}
-                <div className="descripcion-producto-page">
-                    <div dangerouslySetInnerHTML={{ __html: descripcion }} />
+                    {!envio ? (
+                        <></>
+                    ) : (
+                        <div className="cp-container">
+                            {isEditing ? (
+                                <div className="editar-cp">
+                                    <input
+                                        type="text"
+                                        className="cp-input"
+                                        defaultValue={codigoPostal}
+                                        onBlur={(e) => handleGuardarCodigoPostal(e.target.value)}
+                                        onKeyPress={handleKeyPress}
+                                    />
+                                    <button className="cp-button" onClick={() => handleGuardarCodigoPostal(codigoPostal)}>Actualizar</button>
+                                </div>
+                            ) : codigoPostal == undefined ? (
+                                <p className="cp-envio" onClick={() => setIsEditing(true)} style={{ cursor: 'pointer' }}>
+                                    Añadir un código postal para calcular el precio <FaPlus size={15} color="#ee1f26" />
+                                </p>
+                            )
+                                :
+                                (
+                                    <p className="cp-envio" onClick={() => setIsEditing(true)}>
+                                        Código postal: <span>{codigoPostal}</span> <FaPencilAlt size={15} style={{ cursor: 'pointer' }} color="#ee1f26" />
+                                    </p>
+                                )}
+                            {showAlert && (
+                                <p className="alert-text">El código postal debe ser un número de 5 dígitos entre 01000 y 50999.</p>
+                            )}
+                        </div>
+                    )}
+                    {!envio ? (
+                        <div className="precio-producto-page">{precioPack.toFixed(2)} €</div>
+                    ) : (
+                        <div className="precio-producto-page">{precioFinal} €</div>
+                    )}
+                    <div className="descripcion-producto-page">
+                        <div dangerouslySetInnerHTML={{ __html: descripcion }} />
+                    </div>
+                    <button className="cta-producto-page" onClick={handleShowPopup}>COMPRAR AHORA</button>
+                    {showPopup && <FinalizaTuCompra nombre={nombre} imagen={imagen} precioPack={precioPack} envio={envio} precioFinal={precioFinal} onClose={() => {
+                        setShowPopup(false);
+                        document.body.style.overflow = 'unset';
+                    }} />}
                 </div>
-                <button className="cta-producto-page" onClick={handleShowPopup}>COMPRAR AHORA</button>
-                {showPopup && <FinalizaTuCompra nombre={nombre} imagen={imagen} precioPack={precioPack} envio={envio} precioFinal={precioFinal} onClose={() => {
-                    setShowPopup(false);
-                    document.body.style.overflow = 'unset';
-                }} />}
             </div>
-        </div>
+            <div className="info-adicional-producto-page">
+                <img src='/assets/suministrado.png' alt="Suministrado en españa" />
+                <p>Nuestro COMPROMISO: <br></br>PRECIOS mínimos,<br></br>GARANTIZADO.-!</p>
+            </div>
+        </>
     )
 }
 

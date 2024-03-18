@@ -2,31 +2,68 @@ import React, { useState, useEffect } from 'react';
 import './CategoriasSection.css';
 import CategoriaSection from './CategoriaSection';
 import { getMarcas } from '../modelos/MarcaModel';
+import { getProductores } from '../modelos/ProductorModel';
+import { getPartners } from '../modelos/PartnerModel';
+import PromoPopUp from '../components/PromoPopUp'
+import ThermoRossiSVG from '../components/thermorossi'
 
 const Categoria = (props) => {
 
-  const { isMarcas } = props;
+  const { isMarcas, isPartners } = props;
   const [marcas, setMarcas] = useState([]);
 
   useEffect(() => {
-    getMarcas().then((marcas) => {
-      setMarcas(marcas);
-    });
-
+    if (isMarcas) {
+      getMarcas().then((marcas) => {
+        setMarcas(marcas);
+      });
+    }
+    else if (!isPartners) {
+      getProductores().then((productores) => {
+        setMarcas(productores);
+      });
+    }
+    else {
+      getPartners().then((partners) => {
+        setMarcas(partners);
+      }
+      );
+    }
   }, []);
 
+  const [showPopup, setShowPopup] = useState(false);
+
+  const handleShowPopup = () => {
+    // Navegamos a https://www.ifema.es/construtec
+    window.location.href = 'https://www.ifema.es/construtec';
+  }
+
   return (
-    <div className="categorias-section">
-      {marcas.map(marca => (
-        <CategoriaSection
-          id={marca.id}
-          isMarca={isMarcas}
-          titulo={marca.nombre}
-          descripcion={marca.descripcion}
-        />
-      ))}
-    </div>
+    <>
+      <div className="categorias-section">
+        {marcas.map(marca => (
+          <CategoriaSection
+            id={marca.id}
+            isMarca={isMarcas}
+            isPartner={isPartners}
+            titulo={marca.nombre}
+            descripcion={marca.descripcion}
+            imagen={marca.imagen}
+            url={marca.url}
+          />
+        ))}
+      </div>
+      <div className="sponsors-content" onClick={handleShowPopup}>
+        <h3 className="sponsors-titulo">promo</h3>
+        <ThermoRossiSVG />
+      </div>
+      {
+        showPopup && <PromoPopUp onClose={() => {
+          setShowPopup(false);
+          document.body.style.overflow = 'unset';
+        }} type={1} />
+      }
+    </>
   );
 }
-
 export default Categoria;

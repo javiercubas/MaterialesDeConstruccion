@@ -29,12 +29,48 @@ const Popup = (props) => {
     const parsedCodigoPostal = parseInt(codigoPostal, 10);
     return parsedCodigoPostal >= 1000 && parsedCodigoPostal <= 50999;
   };
+  const isValidPhone = (phone) => {
+    const phonePattern = /^[0-9]{9}$/; // Ejemplo de validación de 9 dígitos numéricos
+    return phonePattern.test(phone);
+  };
 
+  const isValidDNI = (dni) => {
+    while (!(/^\d{8}[a-zA-Z]$/.test(dni))) {
+      return false;
+    }
+
+    //Se separan los números de la letra
+    var letraDNI = dni.substring(8, 9).toUpperCase();
+    var numDNI = parseInt(dni.substring(0, 8));
+
+    //Se calcula la letra correspondiente al número
+    var letras = ['T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E', 'T'];
+    var letraCorrecta = letras[numDNI % 23];
+
+    if (letraDNI != letraCorrecta) {
+      return false;
+    }
+    return true;
+  };
+
+  const isValidEmail = (email) => {
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    return emailPattern.test(email);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (codigoPostal != e.target.cp.value && isValidCodigoPostal(e.target.cp.value) && envio) {
       alert("El código postal no coincide con el introducido anteriormente");
+    }
+    else if (!isValidPhone(e.target.telefono.value)) {
+      alert("El teléfono introducido no es válido");
+    }
+    else if (!isValidEmail(e.target.email.value)) {
+      alert("El email introducido no es válido");
+    }
+    else if (!isValidDNI(e.target.dni.value)) {
+      alert("El DNI introducido no es válido");
     }
     else {
       addCliente({
@@ -50,9 +86,26 @@ const Popup = (props) => {
         producto: nombre,
         precio: (envio ? precioFinal : precioPack.toFixed(2)),
         pagado: false,
+        envio: envio,
       })
         .then((clienteId) => {
-          handleBuyNow(clienteId);
+          enviarMensajeTelegram(
+            {
+              nombre: e.target.nombre.value,
+              apellidos: e.target.apellidos.value,
+              correo: e.target.email.value,
+              telefono: e.target.telefono.value,
+              direccion: e.target.direccion.value,
+              codigoPostal: e.target.cp.value,
+              provincia: e.target.provincia.value,
+              localidad: e.target.localidad.value,
+              dni: e.target.dni.value,
+              producto: nombre,
+              precio: (envio ? precioFinal : precioPack.toFixed(2)),
+              envio: envio ? "Sí" : "No",
+            }
+          )
+          alert("Pedido realizado con éxito. En breve nos pondremos en contacto contigo para confirmar el pedido.");
         })
     }
   };
@@ -61,47 +114,53 @@ const Popup = (props) => {
     onClose();
   };
 
-  // Función para crear la sesión de pago y redireccionar al usuario a la pasarela de pago de Stripe
-  const handleBuyNow = async (id) => {
+  const telegramBotToken = process.env.REACT_APP_TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.REACT_APP_CHAT_ID;
+
+  // Función para enviar un mensaje al bot de Telegram con los datos del pedido
+  async function enviarMensajeTelegram(datosPedido) {
     try {
-      // Hacer una solicitud POST al backend para crear una sesión de pago con Stripe
-      const response = await axios.post(
-        'https://api.primepellet.es/create-checkout-session', // Especifica la URL completa del backend
-        {
-          amount: (envio ? precioFinal : precioPack.toFixed(2)) * 100,
-          currency: 'eur',
-          nombre: nombre,
-          productImage: "https://primepellet.es" + imagen.replaceAll("..", "").replaceAll("//", "/"),
-          userId: id,
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        },
-        {
-          withCredentials: true, // Importante: incluir este atributo para enviar cookies
-        }
-      );
+      const mensaje = `
+            Nuevo pedido recibido:
+            - Nombre: ${datosPedido.nombre} ${datosPedido.apellidos}
+            - Correo: ${datosPedido.correo}
+            - Teléfono: ${datosPedido.telefono}
+            - Dirección: ${datosPedido.direccion}
+            - Código Postal: ${datosPedido.codigoPostal}
+            - Provincia: ${datosPedido.provincia}
+            - Localidad: ${datosPedido.localidad}
+            - DNI: ${datosPedido.dni}
+            - Producto: ${datosPedido.producto}
+            - Precio: ${datosPedido.precio}
+            - Envío: ${datosPedido.envio}
+        `;
 
-      // Obtener el ID de la sesión de pago desde la respuesta del backend
-      const sessionId = response.data.id;
-
-      // Redireccionar al usuario a la pasarela de pago de Stripe
-      const stripe = window.Stripe('pk_live_51NY3CrIhiBCy1girKTmEw5gbob5qkerzsfG2Q5VjOFMRNND3UiWbPEbFtmyy6L17jb775TROh0ncc9A4x53HXzu000AjdmXMGm'); // Reemplaza 'TU_STRIPE_PUBLIC_KEY' con tu clave pública de Stripe
-      const { error } = await stripe.redirectToCheckout({
-        sessionId: sessionId,
+      await axios.post(`https://api.telegram.org/bot${telegramBotToken}/sendMessage`, {
+        chat_id: chatId,
+        text: mensaje,
       });
-
-      if (error) {
-        console.error('Error al redireccionar a la pasarela de pago:', error);
-        // Puedes mostrar un mensaje de error o tomar otra acción en caso de que haya un error al redireccionar a la pasarela de pago
-      }
+      console.log('Mensaje enviado a Telegram');
     } catch (error) {
-      console.error('Error al crear la sesión de pago:', error);
-      // Puedes mostrar un mensaje de error o tomar otra acción en caso de que haya un error al crear la sesión de pago
+      console.error('Error al enviar el mensaje a Telegram:', error.message);
     }
+  }
+
+  // Ejemplo de uso
+  const pedidoEjemplo = {
+    nombre: 'Juan',
+    apellidos: 'Pérez',
+    correo: 'juan@example.com',
+    telefono: '123456789',
+    direccion: 'Calle Principal 123',
+    codigoPostal: '28001',
+    provincia: 'Madrid',
+    localidad: 'Madrid',
+    dni: '12345678X',
+    producto: 'Producto ABC',
+    precio: '100€',
+    envio: 'Express',
   };
+
 
   return (
     <div id="popup-container" className="popup-container">

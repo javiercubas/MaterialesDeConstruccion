@@ -1,4 +1,4 @@
-.exitosa-container{
+.exitosa-container {
     width: 100%;
     padding: 7vh 0;
     display: flex;
@@ -9,18 +9,18 @@
     margin-top: 12vh;
 }
 
-.exitosa-title{
+.exitosa-title {
     font-size: 56px;
     font-weight: 1000;
     font-style: italic;
-    color: purple;
+    color: #666;
     text-transform: uppercase;
     position: relative;
     text-align: center;
     margin: 10px;
 }
 
-.exitosa-text{
+.exitosa-text {
     font-size: 24px;
     font-weight: 500;
     color: black;
@@ -30,16 +30,16 @@
     width: 100%;
 }
 
-.exitosa-img{
+.exitosa-img {
     height: 40%;
     max-height: 400px;
     width: auto;
     object-fit: contain;
 }
 
-.exitosa-button{
+.exitosa-button {
     padding: 15px 35px;
-    background-color: purple;
+    background-color: #666;
     border: none;
     border-radius: 10px;
     color: white;

@@ -1,6 +1,6 @@
 .card-box {
     border-radius: 10px;
-    border: 5px solid purple;
+    border: 5px solid #666;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,8 +17,9 @@
     border-radius: 10px 10px 0px 0px;
 }
 
-.inside-box{
+.inside-box {
     width: 100%;
+    height: 40%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -38,7 +39,7 @@
 }
 
 .cta-card {
-    background-color: purple;
+    background-color: #666;
     color: white;
     border: 0;
     width: 100%;
@@ -48,10 +49,10 @@
     cursor: pointer;
 }
 
-.card-box:hover{
-    border-color: #d88c00;
+.card-box:hover {
+    border-color: #ee1f26;
 }
 
-.card-box:hover .cta-card{
-    background-color: #d88c00;
+.card-box:hover .cta-card {
+    background-color: #ee1f26;
 }

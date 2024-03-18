@@ -13,7 +13,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    background-image: url(https://carbonverde.es/wp-content/uploads/2020/11/que-es-el-pellet.jpg);
+    background-image: url(https://cdn.homedepot.com.mx/departamentos/22_Materiales/HERO.jpg);
     background-size: cover;
     background-position: center;
     filter: blur(5px) brightness(0.8);
@@ -30,7 +30,7 @@
 }
 
 .titulo-buscador span {
-    color: purple;
+    color: #ee1f26;
 }
 
 .input-buscador {
@@ -39,9 +39,9 @@
     /* Se agregó un espacio adicional a la derecha para el ícono */
     width: 30%;
     position: relative;
-    outline: 2px solid purple;
+    outline: 2px solid #ee1f26;
     border: 0;
-    color: purple;
+    color: #ee1f26;
     font-weight: 600;
     font-size: 18px;
 }
@@ -53,7 +53,7 @@
     max-height: 40vh;
     overflow-y: auto;
     border-radius: 10px;
-    border: 2px solid purple;
+    border: 2px solid #ee1f26;
     display: none;
 }
 
@@ -69,7 +69,7 @@
 
 /* Estilo del thumb del scrollbar */
 .search-results::-webkit-scrollbar-thumb {
-    background-color: purple;
+    background-color: #ee1f26;
     border-radius: 4px;
 }
 
@@ -96,7 +96,7 @@
     align-items: center;
     justify-content: flex-start;
     padding: 5px 0;
-    border-bottom: 2px solid purple;
+    border-bottom: 2px solid #ee1f26;
     /* Ajusta el espaciado vertical entre cada elemento de sugerencia */
 }
 
@@ -117,7 +117,7 @@
 .search-result-item p {
     font-size: 18px;
     font-weight: 700;
-    color: purple;
+    color: #ee1f26;
     margin: 0;
     padding: 0 10px;
     cursor: pointer;
