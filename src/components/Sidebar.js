@@ -8,7 +8,7 @@ const Sidebar = (props) => {
         categorias: true,
         marcas: true,
         productores: true,
-    });    
+    });
 
     return (
         <div className="sidebar">
@@ -19,7 +19,7 @@ const Sidebar = (props) => {
             {openSections.categorias && (
                 <ul>
                     {categorias.map((categoria, index) => (
-                        <li key={index} onClick={() => onFilterChange('categoria', categoria)}>
+                        <li key={index} onClick={() => { onFilterChange('categoria', categoria); window.scrollTo(0, 0); }}>
                             {categoria}
                         </li>
                     ))}
