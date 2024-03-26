@@ -1054,8 +1054,7 @@ const Producto = (props) => {
             </div>
             {productos.length > 0 && (
                 <div className="productos-relacionados-container">
-                    <Productos titulo="Productos Relacionados" productos={productos[1]} />
-                    {/* <Productos productos={productos[0]} /> */}
+                    <Productos titulo="Productos Relacionados" productos={productos} />
                 </div>
             )}
         </>
