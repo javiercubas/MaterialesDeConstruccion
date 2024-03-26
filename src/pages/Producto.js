@@ -967,6 +967,7 @@ const Producto = (props) => {
                     id: id
                 }).then((response) => {
                     setProductos(response.data);
+                    console.log(response.data);
                 });
             } catch (e) {
                 console.log(e);
@@ -1047,10 +1048,6 @@ const Producto = (props) => {
                         document.body.style.overflow = 'unset';
                     }} />}
                 </div>
-            </div>
-            <div className="info-adicional-producto-page">
-                <img src='/assets/suministrado.png' alt="Suministrado en españa" />
-                <p>Nuestro COMPROMISO: <br></br>PRECIOS mínimos,<br></br>GARANTIZADO.-!</p>
             </div>
             {productos.length > 0 && (
                 <div className="productos-relacionados-container">
