@@ -197,7 +197,9 @@
 .productos-relacionados-container {
     width: 95%;
     display: flex;
+    flex-direction: column;
     margin-top: 2vh;
+    gap: 2vh;
 }
 
 @media screen and (max-width: 768px) {

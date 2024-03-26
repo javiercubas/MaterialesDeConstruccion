@@ -62,9 +62,16 @@ const Header = () => {
   const [showPopup, setShowPopup] = useState(false);
 
   const [cart, setCart] = useState([]);
+  const [showCart, setShowCart] = useState(false);
+
+  const handleShowCart = () => {
+    setShowCart(!showCart);
+  };
+
+  const cookies = new Cookies();
   useEffect(() => {
     try {
-      const cookies = new Cookies();
+
       const carrito = cookies.get('carrito');
 
       if (carrito) {
@@ -144,9 +151,11 @@ const Header = () => {
               <li><a href="/sobre-nosotros">SOBRE NOSOTROS</a></li>
             </ul>
           </div>
-          <div className="shopping-cart-container">
+          <div className="shopping-cart-container" onClick={handleShowCart}>
             <img src="/assets/shopping-cart.png" alt="shopping-cart" className="shopping-cart" width={40}></img>
-            <div className="shopping-cart-counter">{cart.length}</div>
+            <div className="shopping-cart-counter">
+              {cart.length}
+            </div>
           </div>
 
         </div>
@@ -160,6 +169,34 @@ const Header = () => {
         setShowPopup(false);
         document.body.style.overflow = 'unset';
       }} type={1} />}
+      <div className="prueba">
+        {1 === 1 &&
+          console.log("Hola") &&
+          <div className="cart-container">
+            <div className="cart">
+              <div className="cart-header">
+                <h3>Carrito</h3>
+                <button onClick={() => setShowCart(false)}>Cerrar</button>
+              </div>
+              <div className="cart-items">
+                {cart.map((producto, index) => (
+                  <div key={index} className="cart-item">
+                    <img src={producto.imagen} alt={producto.nombre} />
+                    <div>
+                      <h4>{producto.nombre}</h4>
+                      <p>{producto.precio}€</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="cart-footer">
+                <h4>Total: {cart.reduce((acc, producto) => acc + producto.precio, 0)}€</h4>
+                <button>Comprar</button>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
     </>
   );
 };

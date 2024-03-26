@@ -10,7 +10,7 @@ import axios from 'axios';
 
 const Producto = (props) => {
 
-    const { nombre, imagen, precio, descripcion, pack, peso, estrellas, seEnvia, tipo } = props;
+    const { nombre, imagen, precio, descripcion, pack, peso, estrellas, seEnvia, tipo, id } = props;
 
     const precioPack = precio * pack;
 
@@ -957,6 +957,25 @@ const Producto = (props) => {
             , 2000);
     }
 
+    const [productos, setProductos] = useState([]);
+
+    useEffect(() => {
+        async function getProductosRelacionados() {
+            try {
+                await axios.post('https://api.primepellet.es/productos-relacionados', {
+                    bbdd: 2,
+                    id: id
+                }).then((response) => {
+                    setProductos(response.data);
+                });
+            } catch (e) {
+                console.log(e);
+                console.log('Error al cargar los productos relacionados');
+            }
+        }
+        getProductosRelacionados();
+    }, [tipo]);
+
     return (
         <>
             <div className="producto-page">
@@ -1033,6 +1052,12 @@ const Producto = (props) => {
                 <img src='/assets/suministrado.png' alt="Suministrado en españa" />
                 <p>Nuestro COMPROMISO: <br></br>PRECIOS mínimos,<br></br>GARANTIZADO.-!</p>
             </div>
+            {productos.length > 0 && (
+                <div className="productos-relacionados-container">
+                    <Productos titulo="Productos Relacionados" productos={productos[1]} />
+                    {/* <Productos productos={productos[0]} /> */}
+                </div>
+            )}
         </>
     )
 }
