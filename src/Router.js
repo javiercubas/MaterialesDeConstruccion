@@ -65,6 +65,7 @@ const Router = () => {
                         titulo={marca.nombre}
                         id={marca.id}
                         descripcion={marca.descripcion}
+                        logo={marca.imagen}
                         isMarca={true}
                     />}
                 />
@@ -77,6 +78,7 @@ const Router = () => {
                         titulo={productor.nombre}
                         id={productor.id}
                         descripcion={productor.descripcion}
+                        logo={productor.imagen}
                         isProductor={true} />}
                 />
             ))}

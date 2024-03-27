@@ -8,7 +8,7 @@ import PromoPopUp from '../components/PromoPopUp';
 import ThermoRossiSVG from '../components/thermorossi';
 
 const CategoriaSection = (props) => {
-    const { titulo, descripcion, id, isMarca, isProductor, type } = props;
+    const { titulo, descripcion, id, isMarca, isProductor, logo, type } = props;
     const [productos, setProductos] = useState([]);
 
     useEffect(() => {
@@ -40,7 +40,10 @@ const CategoriaSection = (props) => {
         <div className="categorias-section">
             <div className="categoria-page-container">
                 <h2 className="categoria-page-titulo">{titulo}</h2>
-                <div dangerouslySetInnerHTML={{ __html: descripcion }} className='categoria-page-descripcion' />
+                <div className='categoria-page-content'>
+                    {logo && <img src={logo} alt={titulo} className='categoria-page-logo' />}
+                    <div dangerouslySetInnerHTML={{ __html: descripcion }} className='categoria-page-descripcion' style={{ width: logo ? '50%' : '100%' }} />
+                </div>
                 <Productos productos={productos} width="100%" grid="repeat(4, 1fr)" />
             </div>
             <div className="sponsors-content" onClick={handleShowPopup}>

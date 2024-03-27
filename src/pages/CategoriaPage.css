@@ -27,10 +27,25 @@
     background-image: linear-gradient(to right, #666, transparent);
 }
 
+.categoria-page-content {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.categoria-page-logo {
+    width: 50%;
+    height: 50%;
+    object-fit: contain;
+}
+
 .categoria-page-descripcion {
     font-size: 20px;
     font-weight: 500;
-    width: 100%;
+    width: 50%;
     margin: 0;
 }
 
