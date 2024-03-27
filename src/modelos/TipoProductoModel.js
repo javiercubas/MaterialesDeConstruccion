@@ -19,7 +19,6 @@ export const getTiposProductos = async () => {
 export const getTipoProductoProductos = async (id) => {
     const response = await fetch(`https://api.primepellet.es/productos/categorias/${id}?bbdd=2`);
     const productos = await response.json();
-    console.log(productos);
     return productos.map((producto) => new ProductoModel(producto));
 };
 

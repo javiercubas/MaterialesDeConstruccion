@@ -5,8 +5,6 @@ import { getMarcaProductos } from '../modelos/ProductoModel';
 import { getProductorProductos } from '../modelos/ProductoModel';
 import { getTipoProductoProductos } from '../modelos/TipoProductoModel';
 import PromoPopUp from '../components/PromoPopUp';
-import ThermoRossiCalderas from '../components/thermorossiCalderas';
-import ThermoRossiEstufas from '../components/thermorossiEstufas';
 import ThermoRossiSVG from '../components/thermorossi';
 
 const CategoriaSection = (props) => {
