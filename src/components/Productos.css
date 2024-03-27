@@ -27,6 +27,10 @@
   transition: background-color 0.5s ease-in-out;
 }
 
+.green-blink {
+  background-color: green;
+}
+
 .info-adicional-producto-page {
   width: 95%;
   display: flex;
