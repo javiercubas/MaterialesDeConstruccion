@@ -17,8 +17,9 @@ export const getTiposProductos = async () => {
 
 // Función para consultar todos los productos de un tipo de producto de la api
 export const getTipoProductoProductos = async (id) => {
-    const response = await fetch(`https://api.primepellet.es/productos?bbdd=2&categorias=${id}`);
+    const response = await fetch(`https://api.primepellet.es/productos/categorias/${id}?bbdd=2`);
     const productos = await response.json();
+    console.log(productos);
     return productos.map((producto) => new ProductoModel(producto));
 };
 
