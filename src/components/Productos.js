@@ -33,7 +33,7 @@ const Productos = (props) => {
         <div className="productos" style={{ width: width }}>
             {titulo ? <h3 className="title-productos">{titulo}</h3> : null}
             <div className="descripcion-precios">
-                <div className={`blink-dot ${blink ? '#ee1f26-blink' : ''}`} />
+                <div className={`blink-dot ${blink ? 'green-blink' : ''}`} />
                 <p className="price-productos">Precios actualizados a <span>{fechaActual}</span></p>
             </div>
             <div className="grid-products" style={{ gridTemplateColumns: grid }}>
