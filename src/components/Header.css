@@ -198,20 +198,149 @@ ul li a:focus {
 
 }
 
-.cart-container {
+.cart {
     z-index: 999;
     position: absolute;
-    top: 100%;
-    right: 0;
-    width: 300px;
-    height: 400px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.cart-bg {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.cart-container {
+    z-index: 1000;
+    width: 40%;
+    height: 100%;
     background-color: white;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+    position: relative;
 }
+
+.cart-header {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    background-color: #ee1f26;
+    color: white;
+}
+
+.cart-header h3 {
+    font-size: 1.5vw;
+    font-weight: 600;
+}
+
+.cart-header button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5vw;
+    cursor: pointer;
+}
+
+.cart-items {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: white;
+}
+
+.cart-items::-webkit-scrollbar {
+    width: 10px;
+}
+
+.cart-items::-webkit-scrollbar-thumb {
+    background-color: #ee1f26;
+    border-radius: 10px;
+}
+
+.cart-items::-webkit-scrollbar-track {
+    background-color: white;
+}
+
+.cart-item {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.cart-item img {
+    width: 20%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.cart-item div {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.cart-item h4 {
+    font-size: 1.2vw;
+    font-weight: 600;
+    margin: 0;
+}
+
+.cart-item p {
+    font-size: 1vw;
+    font-weight: 500;
+    margin: 0;
+}
+
+.cart-footer {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    background-color: #ee1f26;
+    color: white;
+}
+
+.cart-footer h4 {
+    font-size: 1.5vw;
+    font-weight: 600;
+}
+
+.cart-footer button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5vw;
+    cursor: pointer;
+}
+
+
 
 @media only screen and (max-width: 1100px) {
     .logo {

@@ -163,40 +163,40 @@ const Header = () => {
         <div className="hamburger" onClick={handleMenuClick}>
           <AiOutlineMenu size={32} color="white" />
         </div>
+        {showCart &&
+          <div className="cart">
+            <div className="cart-bg" />
+            <div className="cart-container">
+              <div className="cart">
+                <div className="cart-header">
+                  <h3>Carrito</h3>
+                  <button onClick={() => setShowCart(false)}>Cerrar</button>
+                </div>
+                <div className="cart-items">
+                  {cart.map((producto, index) => (
+                    <div key={index} className="cart-item">
+                      <img src={producto.imagen} alt={producto.nombre} />
+                      <div>
+                        <h4>{producto.nombre}</h4>
+                        <p>{producto.precio}€</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="cart-footer">
+                  <h4>Total: {cart.reduce((acc, producto) => acc + producto.precio, 0)}€</h4>
+                  <button>Comprar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
       </nav>
 
       {showPopup && <PromoPopUp onClose={() => {
         setShowPopup(false);
         document.body.style.overflow = 'unset';
       }} type={1} />}
-      <div className="prueba">
-        {1 === 1 &&
-          console.log("Hola") &&
-          <div className="cart-container">
-            <div className="cart">
-              <div className="cart-header">
-                <h3>Carrito</h3>
-                <button onClick={() => setShowCart(false)}>Cerrar</button>
-              </div>
-              <div className="cart-items">
-                {cart.map((producto, index) => (
-                  <div key={index} className="cart-item">
-                    <img src={producto.imagen} alt={producto.nombre} />
-                    <div>
-                      <h4>{producto.nombre}</h4>
-                      <p>{producto.precio}€</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="cart-footer">
-                <h4>Total: {cart.reduce((acc, producto) => acc + producto.precio, 0)}€</h4>
-                <button>Comprar</button>
-              </div>
-            </div>
-          </div>
-        }
-      </div>
     </>
   );
 };

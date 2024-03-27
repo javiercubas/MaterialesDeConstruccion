@@ -943,6 +943,7 @@ const Producto = (props) => {
             envio: envio,
             cantidad: 1
         }
+        console.log(producto);
         if (carrito) {
             const newCarrito = carrito.concat(producto);
             cookies.set('carrito', newCarrito, { path: '/' });
