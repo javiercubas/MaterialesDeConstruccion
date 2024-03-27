@@ -42,7 +42,7 @@ const CategoriaSection = (props) => {
                 <h2 className="categoria-page-titulo">{titulo}</h2>
                 <div className='categoria-page-content'>
                     {logo && <img src={logo} alt={titulo} className='categoria-page-logo' />}
-                    <div dangerouslySetInnerHTML={{ __html: descripcion }} className='categoria-page-descripcion' style={{ width: logo ? '50%' : '100%' }} />
+                    <div dangerouslySetInnerHTML={{ __html: descripcion }} className='categoria-page-descripcion' />
                 </div>
                 <Productos productos={productos} width="100%" grid="repeat(4, 1fr)" />
             </div>
