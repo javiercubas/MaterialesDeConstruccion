@@ -939,7 +939,7 @@ const Producto = (props) => {
         const producto = {
             nombre: nombre,
             imagen: imagen,
-            precio: precioFinal,
+            precio: envio ? precioFinal : precioPack.toFixed(2),
             envio: envio,
             cantidad: 1
         }

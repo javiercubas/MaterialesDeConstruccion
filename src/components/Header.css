@@ -298,9 +298,10 @@ ul li a:focus {
 
 .cart-item div {
     width: 60%;
+    height: 85%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: flex-start;
 }
 
@@ -311,8 +312,8 @@ ul li a:focus {
 }
 
 .cart-item p {
-    font-size: 1vw;
-    font-weight: 500;
+    font-size: 1.2vw;
+    font-weight: 700;
     margin: 0;
 }
 
@@ -376,8 +377,7 @@ ul li a:focus {
         justify-content: flex-start;
         align-items: center;
         z-index: 9999;
-        opacity: 0;
-        pointer-events: none;
+        /* pointer-events: none; */
         transition: right 0.3s ease, opacity 0.3s ease;
         margin: 0;
     }
@@ -455,6 +455,74 @@ ul li a:focus {
     .joinButton a {
         font-size: 18px;
     }
+
+    .shopping-cart-container {
+        position: fixed;
+        z-index: 996;
+        background-color: red;
+        padding: 20px;
+        border-radius: 50%;
+        right: 0;
+        top: 90vh;
+    }
+
+    .shopping-cart-container img {
+        width: 35px;
+        height: 35px;
+    }
+
+    .shopping-cart-counter {
+        left: 60%;
+        bottom: 60%;
+        font-size: 14px;
+    }
+
+    .cart-header,
+    .cart-items,
+    .cart-footer {
+        box-sizing: border-box;
+    }
+
+    .cart-container {
+        width: 100%;
+    }
+
+    .cart-header h3 {
+        font-size: 24px;
+    }
+
+    .cart-header button {
+        font-size: 24px;
+    }
+
+    .cart-items {
+        padding: 10px;
+    }
+
+    .cart-item img {
+        width: 30%;
+    }
+
+    .cart-item div {
+        width: 50%;
+    }
+
+    .cart-item h4 {
+        font-size: 20px;
+    }
+
+    .cart-item p {
+        font-size: 20px;
+    }
+
+    .cart-footer h4 {
+        font-size: 24px;
+    }
+
+    .cart-footer button {
+        font-size: 24px;
+    }
+
 }
 
 .no-scroll {

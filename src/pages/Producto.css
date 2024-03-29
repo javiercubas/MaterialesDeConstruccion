@@ -244,12 +244,18 @@
         font-size: 16px;
     }
 
+    .cta-section-producto-page {
+        flex-direction: column;
+        gap: 10px;
+    }
+
     .cta-link {
         width: 100%;
     }
 
     .cta-producto-page {
         width: 100%;
+        margin-bottom: 0;
     }
 
     .shipping-container {

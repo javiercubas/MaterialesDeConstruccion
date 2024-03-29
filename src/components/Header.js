@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { AiOutlineMenu } from 'react-icons/ai';
 import { FaTimes } from 'react-icons/fa';
+import { BsTrash } from "react-icons/bs";
 import "./Header.css";
 import { getProductores } from "../modelos/ProductorModel";
 import { getMarcas } from "../modelos/MarcaModel";
@@ -66,6 +67,13 @@ const Header = () => {
 
   const handleShowCart = () => {
     setShowCart(!showCart);
+
+    // Bloquear el scroll del body cuando se muestra el carrito
+    if (!showCart) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
   };
 
   const cookies = new Cookies();
@@ -151,13 +159,14 @@ const Header = () => {
               <li><a href="/sobre-nosotros">SOBRE NOSOTROS</a></li>
             </ul>
           </div>
-          <div className="shopping-cart-container" onClick={handleShowCart}>
-            <img src="/assets/shopping-cart.png" alt="shopping-cart" className="shopping-cart" width={40}></img>
-            <div className="shopping-cart-counter">
-              {cart.length}
+          {!showCart &&
+            <div className="shopping-cart-container" onClick={handleShowCart}>
+              <img src="/assets/shopping-cart.png" alt="shopping-cart" className="shopping-cart" width={40}></img>
+              <div className="shopping-cart-counter">
+                {cart.length}
+              </div>
             </div>
-          </div>
-
+          }
         </div>
 
         <div className="hamburger" onClick={handleMenuClick}>
@@ -165,12 +174,12 @@ const Header = () => {
         </div>
         {showCart &&
           <div className="cart">
-            <div className="cart-bg" />
+            <div className="cart-bg" onClick={handleShowCart}></div>
             <div className="cart-container">
               <div className="cart">
                 <div className="cart-header">
                   <h3>Carrito</h3>
-                  <button onClick={() => setShowCart(false)}>Cerrar</button>
+                  <FaTimes size={24} color="var(--logo)" onClick={handleShowCart} />
                 </div>
                 <div className="cart-items">
                   {cart.map((producto, index) => (
@@ -180,18 +189,26 @@ const Header = () => {
                         <h4>{producto.nombre}</h4>
                         <p>{producto.precio}€</p>
                       </div>
+                      <BsTrash size={24} color="var(--logo)" onClick={() => {
+                        const newCart = [...cart];
+                        newCart.splice(index, 1);
+                        setCart(newCart);
+                        cookies.set('carrito', newCart, { path: '/' });
+                      }} />
                     </div>
                   ))}
                 </div>
                 <div className="cart-footer">
-                  <h4>Total: {cart.reduce((acc, producto) => acc + producto.precio, 0)}€</h4>
-                  <button>Comprar</button>
+                  <h4>Total: {cart.reduce((acc, producto) => acc + parseFloat(producto.precio), 0)}€</h4>
+                  <button>COMPRAR</button>
                 </div>
               </div>
             </div>
           </div>
         }
       </nav>
+
+
 
       {showPopup && <PromoPopUp onClose={() => {
         setShowPopup(false);
