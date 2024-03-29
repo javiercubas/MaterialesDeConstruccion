@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
 import './index.css';
 import ReactGA from 'react-ga';
+import { CartProvider } from './CartContext';
 
 ReactGA.initialize('G-CHMT10MRY2');
 
@@ -15,7 +16,9 @@ const sendPageView = (location) => {
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <Router onUpdate={sendPageView}>
-    <App />
-  </Router>
+  <CartProvider>
+    <Router onUpdate={sendPageView}>
+      <App />
+    </Router>
+  </CartProvider>
 );

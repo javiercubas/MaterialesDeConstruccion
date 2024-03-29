@@ -7,6 +7,7 @@ import Cookies from 'universal-cookie';
 import FinalizaTuCompra from '../components/FinalizaTuCompra';
 import Productos from '../components/Productos';
 import axios from 'axios';
+import { useCart } from '../CartContext';
 
 const Producto = (props) => {
 
@@ -932,24 +933,18 @@ const Producto = (props) => {
     };
 
     const [mensaje, setMensaje] = useState('AÑADIR AL CARRITO');
+    const { addToCart } = useCart();
 
     const handleCarrito = () => {
-        const cookies = new Cookies();
-        const carrito = cookies.get('carrito');
         const producto = {
             nombre: nombre,
             imagen: imagen,
             precio: envio ? precioFinal : precioPack.toFixed(2),
             envio: envio,
             cantidad: 1
-        }
-        console.log(producto);
-        if (carrito) {
-            const newCarrito = carrito.concat(producto);
-            cookies.set('carrito', newCarrito, { path: '/' });
-        } else {
-            cookies.set('carrito', [producto], { path: '/' });
-        }
+        };
+
+        addToCart(producto);
         setMensaje('AÑADIDO AL CARRITO');
 
         setTimeout(() => {

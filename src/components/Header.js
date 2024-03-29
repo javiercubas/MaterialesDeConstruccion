@@ -9,6 +9,7 @@ import { getPartners } from "../modelos/PartnerModel";
 import { getTiposProductos } from "../modelos/TipoProductoModel";
 import PromoPopUp from "./PromoPopUp";
 import Cookies from "universal-cookie";
+import { useCart } from "../CartContext";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -62,7 +63,7 @@ const Header = () => {
 
   const [showPopup, setShowPopup] = useState(false);
 
-  const [cart, setCart] = useState([]);
+  const { cart, removeProduct } = useCart();
   const [showCart, setShowCart] = useState(false);
 
   const handleShowCart = () => {
@@ -76,20 +77,37 @@ const Header = () => {
     }
   };
 
-  const cookies = new Cookies();
+  const handleRemoveProduct = (product) => {
+    removeProduct(product);
+  };
+
   useEffect(() => {
-    try {
+    const handleResize = () => {
+      clearTimeout(window.resizeTimer);
+      window.resizeTimer = setTimeout(() => {
+        var outerHeight = document.documentElement.clientHeight;
+        var windowHeight = window.innerHeight;
 
-      const carrito = cookies.get('carrito');
+        if (windowHeight > outerHeight) {
+          // La barra de dirección está visible
+          // Aquí puedes ajustar la posición de tus elementos según sea necesario
+          document.querySelector('.shopping-cart-container').style.top = '87vh';
+        } else {
+          // La barra de dirección no está visible
+          // Puedes ajustar la posición de tus elementos de otra manera o dejarlos como están
+          document.querySelector('.shopping-cart-container').style.top = '75vh';
+        }
+      }, 100); // Ajusta el tiempo de espera según sea necesario
+    };
 
-      if (carrito) {
-        setCart(carrito);
-      }
-    } catch (error) {
-      console.error('Error al parsear el carrito desde cookies:', error);
-      // Manejar el error según sea necesario
-    }
+    window.addEventListener('resize', handleResize);
+
+    // Limpia el evento al desmontar el componente
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
+
   return (
     <>
       <nav className={`nav ${isMenuOpen ? "menu-open" : ""}`}>
@@ -189,12 +207,7 @@ const Header = () => {
                         <h4>{producto.nombre}</h4>
                         <p>{producto.precio}€</p>
                       </div>
-                      <BsTrash size={24} color="var(--logo)" onClick={() => {
-                        const newCart = [...cart];
-                        newCart.splice(index, 1);
-                        setCart(newCart);
-                        cookies.set('carrito', newCart, { path: '/' });
-                      }} />
+                      <BsTrash size={24} color="var(--logo)" onClick={() => handleRemoveProduct(producto)} />
                     </div>
                   ))}
                 </div>
