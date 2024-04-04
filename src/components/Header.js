@@ -127,7 +127,7 @@ const Header = () => {
                 onMouseEnter={() => setIsSubProductosOpen(true)}
                 onMouseLeave={() => setIsSubProductosOpen(false)}
               >
-                <TitleElement href="/productos">PRODUCTOS</TitleElement>
+                <a href="/productos">PRODUCTOS</a>
 
               </li>
               <li
