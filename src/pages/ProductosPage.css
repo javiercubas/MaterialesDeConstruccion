@@ -1,4 +1,4 @@
-.productos-page{
+.productos-page {
     margin: 10vh 0;
     margin-right: 3vw;
     display: flex;
@@ -11,7 +11,7 @@
 /* Agrega el botón de apertura del Sidebar */
 .sidebar-button {
     display: none;
-    background-color: #800080;
+    background-color: #ee1f26;
     color: white;
     font-weight: 700;
     width: 90%;
@@ -34,7 +34,8 @@
 
 .sidebar h4 {
     display: flex;
-    align-items: center; /* Centra verticalmente los elementos */
+    align-items: center;
+    /* Centra verticalmente los elementos */
     font-size: 18px;
     margin-bottom: 10px;
     gap: 5px;
@@ -42,8 +43,10 @@
 
 /* Estilos para los íconos */
 .sidebar h4 svg {
-    margin-right: 8px; /* Separación horizontal entre el ícono y el texto */
-    width: 20px; /* Tamaño del ícono */
+    margin-right: 8px;
+    /* Separación horizontal entre el ícono y el texto */
+    width: 20px;
+    /* Tamaño del ícono */
     height: 20px;
 }
 
@@ -57,11 +60,13 @@
     margin-bottom: 5px;
     padding: 10px;
     border-radius: 5px;
-    transition: box-shadow 0.3s ease; /* Transición para el efecto de elevación */
+    transition: box-shadow 0.3s ease;
+    /* Transición para el efecto de elevación */
 }
 
 .sidebar li:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Efecto de elevación en el hover */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    /* Efecto de elevación en el hover */
 }
 
 /* Estilos para la versión móvil */
@@ -71,16 +76,17 @@
         padding: 0;
     }
 
-    .sidebar h4{
+    .sidebar h4 {
         justify-content: center;
     }
 
-    .sidebar li{
+    .sidebar li {
         text-align: center;
     }
 
     .sidebar-button {
-        display: block; /* Muestra el botón de apertura en la versión móvil */
+        display: block;
+        /* Muestra el botón de apertura en la versión móvil */
     }
 
     /* Muestra u oculta el Sidebar según el estado */
@@ -96,13 +102,13 @@
         display: none;
     }
 
-    .productos-page{
+    .productos-page {
         flex-direction: column;
         align-items: center;
         gap: 0;
     }
 
-    .title-productos{
+    .title-productos {
         display: none;
     }
 }
