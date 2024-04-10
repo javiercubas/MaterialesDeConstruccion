@@ -43,7 +43,7 @@ const Productos = (props) => {
                         name={producto.nombre}
                         image={producto.imagen}
                         price={producto.precio}
-                        url={producto.url}
+                        url={`/${producto.nombre.replaceAll(' ', '-').toLowerCase().replaceAll('ñ', 'n').replaceAll('á', 'a').replaceAll('é', 'e').replaceAll('í', 'i').replaceAll('ó', 'o').replaceAll('ú', 'u')}`}
                         pack={producto.pack}
                         iva={producto.iva}
                     />
