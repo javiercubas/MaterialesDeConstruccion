@@ -849,7 +849,7 @@ const Producto = (props) => {
 
             if (estaDentro) {
                 // tipo = tipo * 1.21; // Añadir IVA
-                const precioFinal = (precio + tipo).toFixed(2);
+                const precioFinal = (precio + tipo).toFixed(4);
                 console.log(`El precio final para el código postal ${cp} y tipo de pallet ${tipoPallet} es: ${precioFinal}`);
                 return precioFinal;
             } else {
@@ -939,7 +939,7 @@ const Producto = (props) => {
         const producto = {
             nombre: nombre,
             imagen: imagen,
-            precio: envio ? precioFinal : precioPack.toFixed(3),
+            precio: envio ? precioFinal : precioPack.toFixed(4),
             envio: envio,
             cantidad: 1
         };
@@ -1028,7 +1028,7 @@ const Producto = (props) => {
                         </div>
                     )}
                     {!envio ? (
-                        <div className="precio-producto-page">{precioPack.toFixed(2)} €</div>
+                        <div className="precio-producto-page">{precioPack.toFixed(4)} €</div>
                     ) : (
                         <div className="precio-producto-page">{precioFinal} €</div>
                     )}

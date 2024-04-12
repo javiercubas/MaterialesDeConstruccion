@@ -84,7 +84,7 @@ const Popup = (props) => {
         localidad: e.target.localidad.value,
         dni: e.target.dni.value,
         producto: nombre,
-        precio: (envio ? precioFinal : precioPack.toFixed(2)),
+        precio: (envio ? precioFinal : precioPack.toFixed(4)),
         pagado: false,
         envio: envio,
       })
@@ -101,7 +101,7 @@ const Popup = (props) => {
               localidad: e.target.localidad.value,
               dni: e.target.dni.value,
               producto: nombre,
-              precio: (envio ? precioFinal : precioPack.toFixed(2)),
+              precio: (envio ? precioFinal : precioPack.toFixed(4)),
               envio: envio ? "Sí" : "No",
             }
           )
