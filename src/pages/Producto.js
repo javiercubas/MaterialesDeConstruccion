@@ -1028,9 +1028,9 @@ const Producto = (props) => {
                         </div>
                     )}
                     {!envio ? (
-                        <div className="precio-producto-page">{precioPack.toFixed(4)} €</div>
+                        <div className="precio-producto-page">{precioPack.toFixed(4).replace(".", ",")} €</div>
                     ) : (
-                        <div className="precio-producto-page">{precioFinal} €</div>
+                        <div className="precio-producto-page">{precioFinal.replace(".", ",")} €</div>
                     )}
                     <div className="descripcion-producto-page">
                         <div dangerouslySetInnerHTML={{ __html: descripcion }} />

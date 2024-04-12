@@ -14,7 +14,7 @@ const Card = (props) => {
       <div className="foto-card" style={{ backgroundImage: `url(${imageEncoded})` }} />
       <div className="inside-box">
         <h3 className="title-card">{limitedTitle}</h3>
-        <div className="precio-card">{`${price} €${(pack == 1 ? '' : '/ud')}`}</div>
+        <div className="precio-card">{`${price.toFixed(4).replace(".", ",")} €${(pack == 1 ? '' : '/ud')}`}</div>
       </div>
       <button className="cta-card">COMPRA AHORA</button>
     </a>
