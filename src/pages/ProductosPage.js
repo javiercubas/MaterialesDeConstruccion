@@ -7,6 +7,7 @@ import { getProductores } from '../modelos/ProductorModel';
 import { getCategorias } from '../modelos/CategoriaModel';
 import Sidebar from '../components/Sidebar';
 import './ProductosPage.css';
+import axios from 'axios';
 
 const ProductosPage = () => {
     const [productos, setProductos] = useState([]);
@@ -26,23 +27,34 @@ const ProductosPage = () => {
         setFilters({ ...filters, [filterType]: value });
     };
 
-    useEffect(() => {
-        // Función auxiliar para obtener las categorías de cada producto
+    // Función auxiliar para obtener las categorías de cada producto
     const obtenerCategoriasProductos = async (productos) => {
         const productosConCategorias = await Promise.all(
             productos.map(async (producto) => {
                 const categorias = await getCategoriasProducto(producto.id);
                 producto.categorias = categorias.map((categoria) => categoria.nombre);
+                const categoriaSuperior = categorias.map((categoria) => categoria['categoria-superior']);
+                if (categoriaSuperior.length > 0 && categoriaSuperior[0] !== null) {
+                    axios.get(`https://api.primepellet.es/categorias/${categoriaSuperior}?bbdd=2`).then((res) => {
+                        producto.categorias.push(res.data.nombre);
+                    }
+                    );
+                }
                 return producto;
             })
         );
         setProductos(productosConCategorias);
     };
 
-    // Obtener los productos y sus categorías
-    getProductos().then((productos) => {
-        obtenerCategoriasProductos(productos);
-    });
+    useEffect(() => {
+        // Obtener los productos y sus categorías
+        getProductos().then((productos) => {
+            obtenerCategoriasProductos(productos);
+        });
+    }
+        , []);
+
+    useEffect(() => {
 
         getMarcas().then((marcas) => {
             setMarcas(marcas);
@@ -88,7 +100,7 @@ const ProductosPage = () => {
                 />
             </div>
             <div style={{ width: '77vw' }}>
-            <Productos titulo="Productos" productos={filteredProductos} grid="repeat(3, 1fr)" />
+                <Productos titulo="Productos" productos={filteredProductos} grid="repeat(3, 1fr)" />
             </div>
         </div>
     )

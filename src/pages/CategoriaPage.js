@@ -6,10 +6,12 @@ import { getProductorProductos } from '../modelos/ProductoModel';
 import { getTipoProductoProductos } from '../modelos/TipoProductoModel';
 import PromoPopUp from '../components/PromoPopUp';
 import ThermoRossiSVG from '../components/thermorossi';
+import axios from 'axios';
 
 const CategoriaSection = (props) => {
     const { titulo, descripcion, id, isMarca, isProductor, logo, type } = props;
     const [productos, setProductos] = useState([]);
+    const [subcategorias, setSubcategorias] = useState([]);
 
     useEffect(() => {
         if (isMarca) {
@@ -27,6 +29,9 @@ const CategoriaSection = (props) => {
                 setProductos(productos);
             });
         }
+        axios.get('https://api.primepellet.es/subcategorias/' + id + '?bbdd=2').then((response) => {
+            setSubcategorias(response.data);
+        });
     }, []);
 
     const [showPopup, setShowPopup] = useState(false);
@@ -40,6 +45,12 @@ const CategoriaSection = (props) => {
         <div className="categorias-section">
             <div className="categoria-page-container">
                 <h2 className="categoria-page-titulo">{titulo}</h2>
+                {subcategorias.length > 0 && <div className="subcategorias-container">
+                    {subcategorias.map((subcategoria) => {
+                        return <a href={'/productos/' + subcategoria.nombre} className="subcategoria">{subcategoria.nombre}</a>
+                    })}
+                </div>
+                }
                 <div className='categoria-page-content'>
                     {logo && <img src={logo} alt={titulo} className='categoria-page-logo' />}
                     <div dangerouslySetInnerHTML={{ __html: descripcion }} className='categoria-page-descripcion' />
