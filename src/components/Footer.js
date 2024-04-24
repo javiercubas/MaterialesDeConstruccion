@@ -18,7 +18,7 @@ const Footer = () => {
 
             <div className="footer-bottom">
                 <p className="footer-bottom-text">© 2024 Materiales de Construcción. Todos los derechos reservados.</p>
-                <a href="" className="footer-button">Politica de Privacidad</a>
+                <a href="/terminos-y-condiciones" className="footer-button">Términos y condiciones</a>
             </div>
         </div>
     )
