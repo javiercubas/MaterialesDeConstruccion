@@ -8,6 +8,7 @@ import FinalizaTuCompra from '../components/FinalizaTuCompra';
 import Productos from '../components/Productos';
 import axios from 'axios';
 import { useCart } from '../CartContext';
+import { Helmet } from 'react-helmet';
 
 const Producto = (props) => {
 
@@ -973,8 +974,23 @@ const Producto = (props) => {
         getProductosRelacionados();
     }, [tipo]);
 
+    // Titulo y descripción para el SEO
+    let tituloSEO = nombre.toLowerCase();
+    // Cambiar la primera letra a mayúscula
+    tituloSEO = tituloSEO.charAt(0).toUpperCase() + tituloSEO.slice(1);
+    tituloSEO = tituloSEO + " | Materiales de Construcción";
+
+    // Limitamos la descripción a 160 caracteres
+    let descripcionSEO = descripcion;
+    descripcionSEO = descripcionSEO.replace(/<[^>]*>?/gm, '');
+    descripcionSEO = descripcionSEO.substring(0, 160);
+
     return (
         <>
+            <Helmet>
+                <title>{tituloSEO}</title>
+                <meta name="description" content={descripcionSEO} />
+            </Helmet>
             <div className="producto-page">
                 <div className="multimedia-producto-page">
                     <img src={imagen} alt={nombre} className="img-producto-page" />
