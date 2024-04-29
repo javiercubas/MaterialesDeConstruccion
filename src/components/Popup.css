@@ -56,7 +56,7 @@
 
 .popup-content img {
     width: 50%;
-    height: auto;
+    aspect-ratio: 250/43;
     object-fit: contain;
 }
 
