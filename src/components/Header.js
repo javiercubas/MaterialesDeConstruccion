@@ -66,6 +66,9 @@ const Header = () => {
   const { cart, removeProduct } = useCart();
   const [showCart, setShowCart] = useState(false);
 
+  // Variable booleana para determinar si se muestra el carrito en función del ancho de la pantalla
+  const showCartOnMobile = window.innerWidth <= 1100;
+
   const handleShowCart = () => {
     setShowCart(!showCart);
 
@@ -177,7 +180,7 @@ const Header = () => {
               <li><a href="/sobre-nosotros">SOBRE NOSOTROS</a></li>
             </ul>
           </div>
-          {!showCart &&
+          {!showCart && showCartOnMobile &&
             <div className="shopping-cart-container" onClick={handleShowCart}>
               <img src="/assets/shopping-cart.png" alt="shopping-cart" className="shopping-cart" width={40}></img>
               <div className="shopping-cart-counter">
