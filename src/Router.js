@@ -1,12 +1,10 @@
 import React, { Suspense, lazy } from 'react'
 import { Routes, Route } from 'react-router-dom'
-import SobreNosotros from './pages/SobreNosotros'
 import { useEffect, useState } from 'react';
 import { getProductos } from './modelos/ProductoModel';
 import { getProductores } from './modelos/ProductorModel';
 import { getMarcas } from './modelos/MarcaModel';
 import { getTiposProductos } from './modelos/TipoProductoModel'
-import { render } from '@testing-library/react';
 
 const Home = lazy(() => import('./pages/Home'));
 const ProductosPage = lazy(() => import('./pages/ProductosPage'));
