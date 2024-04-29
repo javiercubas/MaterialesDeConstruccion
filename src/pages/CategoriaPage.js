@@ -7,6 +7,7 @@ import { getTipoProductoProductos } from '../modelos/TipoProductoModel';
 import PromoPopUp from '../components/PromoPopUp';
 import ThermoRossiSVG from '../components/thermorossi';
 import axios from 'axios';
+import { Helmet } from 'react-helmet';
 
 const CategoriaSection = (props) => {
     const { titulo, descripcion, id, isMarca, isProductor, logo, type } = props;
@@ -42,30 +43,36 @@ const CategoriaSection = (props) => {
     }
 
     return (
-        <div className="categorias-section">
-            <div className="categoria-page-container">
-                <h2 className="categoria-page-titulo">{titulo}</h2>
-                {subcategorias.length > 0 && <div className="subcategorias-container">
-                    {subcategorias.map((subcategoria) => {
-                        return <a href={'/productos/' + subcategoria.nombre} className="subcategoria">{subcategoria.nombre}</a>
-                    })}
+        <>
+            <Helmet>
+                <title>{titulo}</title>
+                <meta name="description" content={descripcion} />
+            </Helmet>
+            <div className="categorias-section">
+                <div className="categoria-page-container">
+                    <h2 className="categoria-page-titulo">{titulo}</h2>
+                    {subcategorias.length > 0 && <div className="subcategorias-container">
+                        {subcategorias.map((subcategoria) => {
+                            return <a href={'/productos/' + subcategoria.nombre} className="subcategoria">{subcategoria.nombre}</a>
+                        })}
+                    </div>
+                    }
+                    <div className='categoria-page-content'>
+                        {logo && <img src={logo} alt={titulo} className='categoria-page-logo' />}
+                        <div dangerouslySetInnerHTML={{ __html: descripcion }} className='categoria-page-descripcion' />
+                    </div>
+                    <Productos productos={productos} width="100%" grid="repeat(4, 1fr)" />
                 </div>
-                }
-                <div className='categoria-page-content'>
-                    {logo && <img src={logo} alt={titulo} className='categoria-page-logo' />}
-                    <div dangerouslySetInnerHTML={{ __html: descripcion }} className='categoria-page-descripcion' />
+                <div className="sponsors-content" onClick={handleShowPopup}>
+                    <h3 className="sponsors-titulo">promo</h3>
+                    <ThermoRossiSVG />
                 </div>
-                <Productos productos={productos} width="100%" grid="repeat(4, 1fr)" />
+                {showPopup && <PromoPopUp onClose={() => {
+                    setShowPopup(false);
+                    document.body.style.overflow = 'unset';
+                }} type={type} />}
             </div>
-            <div className="sponsors-content" onClick={handleShowPopup}>
-                <h3 className="sponsors-titulo">promo</h3>
-                <ThermoRossiSVG />
-            </div>
-            {showPopup && <PromoPopUp onClose={() => {
-                setShowPopup(false);
-                document.body.style.overflow = 'unset';
-            }} type={type} />}
-        </div>
+        </>
     );
 }
 
