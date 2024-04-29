@@ -55,7 +55,7 @@ a {
 .mapa {
     width: 100%;
     height: 40vh;
-    background-image: url("../../public/mapa.jpeg");
+    background-image: url("../../public/mapa.webp");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;

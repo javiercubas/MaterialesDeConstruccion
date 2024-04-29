@@ -77,7 +77,7 @@ const Popup = () => {
       <div className="popup-background"></div>
       <div className="popup-content">
         <FaTimes className="close-icon" onClick={closePopup} />
-        <img src='../../assets/logo.png' alt='logo' className='logo-popup' />
+        <img src='../../assets/logo.webp' alt='logo' className='logo-popup' />
         <h2>¡Bienvenido! <br></br> Ingresa tu código postal para obtener los <span>mejores precios.</span></h2>
         <form ref={formRef} onSubmit={handleSubmit}>
           <div className="codigo-verificacion">
