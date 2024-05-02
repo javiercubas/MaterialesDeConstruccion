@@ -20,7 +20,6 @@ const Header = () => {
   const [marcas, setMarcas] = useState([]);
   const [productores, setProductores] = useState([]);
   const [partners, setPartners] = useState([]);
-  const [tiposProductos, setTiposProductos] = useState([]);
 
   useEffect(() => {
     if (isMenuOpen) {
@@ -41,9 +40,6 @@ const Header = () => {
       setPartners(partners);
     });
 
-    getTiposProductos().then((tiposProductos) => {
-      setTiposProductos(tiposProductos);
-    });
   }, [isMenuOpen]);
 
   const handleSubmenuClick = (submenuState, setSubmenuState) => {
