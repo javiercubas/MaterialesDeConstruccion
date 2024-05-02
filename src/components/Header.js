@@ -180,16 +180,17 @@ const Header = () => {
               <li><a href="/sobre-nosotros">SOBRE NOSOTROS</a></li>
             </ul>
           </div>
-          {!showCart && !showCartOnMobile &&
+          {!showCart &&
             <div className="shopping-cart-container" onClick={handleShowCart}>
-              <img src="/assets/shopping-cart.png" alt="shopping-cart" className="shopping-cart" width={40}></img>
+              {showCartOnMobile &&
+                <img src="/assets/shopping-cart.png" alt="shopping-cart" className="shopping-cart" width={40}></img>
+              }
               <div className="shopping-cart-counter">
                 {cart.length}
               </div>
             </div>
           }
         </div>
-
         <div className="hamburger" onClick={handleMenuClick}>
           <AiOutlineMenu size={32} color="white" />
         </div>
