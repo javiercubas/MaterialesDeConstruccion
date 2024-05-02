@@ -61,7 +61,7 @@ const CategoriaSection = (props) => {
                         {logo && <img src={logo} alt={titulo} className='categoria-page-logo' />}
                         <div dangerouslySetInnerHTML={{ __html: descripcion }} className='categoria-page-descripcion' />
                     </div>
-                    <Productos productos={productos} width="100%" grid="repeat(4, 1fr)" />
+                    <Productos productos={productos} width="100%" grid="repeat(3, 1fr)" />
                 </div>
                 <div className="sponsors-content" onClick={handleShowPopup}>
                     <h3 className="sponsors-titulo">promo</h3>

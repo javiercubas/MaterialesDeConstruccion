@@ -180,7 +180,7 @@ const Header = () => {
               <li><a href="/sobre-nosotros">SOBRE NOSOTROS</a></li>
             </ul>
           </div>
-          {!showCart && showCartOnMobile &&
+          {!showCart && !showCartOnMobile &&
             <div className="shopping-cart-container" onClick={handleShowCart}>
               <img src="/assets/shopping-cart.png" alt="shopping-cart" className="shopping-cart" width={40}></img>
               <div className="shopping-cart-counter">
